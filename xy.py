@@ -17,7 +17,7 @@ def drawCone( position = (0,-1,0), radius=1, height=2, slices=50,stacks=10 ):
 	glPushMatrix()
 	try:
 		glTranslatef(*position)
-		glRotatef(250, 1, 0, 0)
+		glRotatef(260, 1,0 , 0)
 		glutSolidCone(radius, height, slices, stacks )
 	finally:
 		glPopMatrix()
