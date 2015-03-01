@@ -42,7 +42,16 @@ def sphereMaterial():
     glMaterialfv(GL_FRONT, GL_DIFFUSE, color)
 
 def drawSphere():
-    position = (0,0,0)
+    position = (0,-1,0)
+    glPushMatrix()
+    try:
+        glTranslatef(*position)
+        glRotatef(360, 1,0 , 0)
+        glutSolidSphere(0.5, 40, 40)
+    finally:
+        glPopMatrix()
+def drawSphere2():
+    position = (2,0.5,2)
     glPushMatrix()
     try:
         glTranslatef(*position)
@@ -86,6 +95,7 @@ def display(clear = 1, swap=1):
     sphereMaterial()
     rotation()
     drawSphere()
+    drawSphere2()
     #glPopMatrix()
     if swap:
         glutSwapBuffers()
