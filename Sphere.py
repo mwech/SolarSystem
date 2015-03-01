@@ -1,4 +1,6 @@
 import time
+import PIL
+import numpy
 
 __author__ = 'mwech'
 from OpenGL.GLUT import *
@@ -44,15 +46,15 @@ def drawSphere():
     glPushMatrix()
     try:
         glTranslatef(*position)
-        glRotatef(260, 1,0 , 0)
-        glutSolidSphere(2, 40, 40)
+        glRotatef(360, 1,0 , 0)
+        glutSolidSphere(0.5, 40, 40)
     finally:
         glPopMatrix()
 
 def perspective():
     glMatrixMode(GL_PROJECTION)
     glLoadIdentity()
-    gluPerspective(40., 1., 1., 40.)
+    gluPerspective(120., 1., 1., 40.)
     glMatrixMode(GL_MODELVIEW)
     glLoadIdentity()
     gluLookAt(0, 0, 10,
@@ -67,7 +69,9 @@ def rotation( period = 10):
     #print(starttime)
     angle = (((time.time()-starttime)%period)/period)* 360
     print(angle)
+    glTranslate(0, -2, 4);
     glRotate( angle, 0,1,0)
+    glTranslate(0, 2, -4);
     return angle
 
 
