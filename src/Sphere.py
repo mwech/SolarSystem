@@ -1,6 +1,4 @@
 import time
-import PIL
-import numpy
 
 __author__ = 'mwech'
 from OpenGL.GLUT import *
