@@ -54,11 +54,12 @@ class Sphere():
         glMaterialfv(GL_FRONT, GL_DIFFUSE, color)
 
 
-    def drawSphere(self, par):
-        position = (3, 0.5, 2.5)
-        glTranslate(par, 0, 0)
+    def drawSphere(self, x, y, z):
+        position = (x,y,z)
         glPushMatrix()
         try:
+            glTranslatef(*position)
+            glRotatef(360,1,0,0)
             sphere = gluNewQuadric()
             # gluQuadricDrawStyle(sphere,GLU_LINE);
             gluSphere(sphere, 1, 20, 20)
@@ -79,7 +80,7 @@ class Sphere():
 
     def rotation(self):
         angle = 1
-        print(angle)
+       #print(angle)
         glTranslate(0, -2, 3);
         glRotate(angle, 0, 1, 0)
         glTranslate(0, 2, -3);
@@ -106,7 +107,8 @@ class Sphere():
             self.light()
             glClearColor(0., 0., 0., 1.)
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
-            self.drawSphere(0)
+            self.drawSphere(1,0,0)
+            self.drawSphere(2,0.5,2)
             self.rotation()
             pygame.display.flip()
             pygame.time.wait(10)
