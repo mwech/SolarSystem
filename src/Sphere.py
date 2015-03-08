@@ -94,17 +94,32 @@ class Sphere():
         self.perspective()
         self.depth()
         self.sphereMaterial()
+        self.light()
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     quit()
+
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_UP:
+                        print('UP')
+                    if event.key == pygame.K_DOWN:
+                        print('DOWN')
+
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if event.button == 4:
-                        glTranslatef(0, 0, 1.0)
+                        glTranslatef(0, 0, 3.0)
                     if event.button == 5:
-                         glTranslatef(0, 0, -1.0)
-            self.light()
+                         glTranslatef(0, 0, -3.0)
+
+                    if event.button == 1:
+                        glDisable(GL_LIGHTING)
+                        glDisable(GL_LIGHT0)
+                    if event.button == 3:
+                        glEnable(GL_LIGHTING)
+                        glEnable(GL_LIGHT0)
+
             glClearColor(0., 0., 0., 1.)
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
             self.drawSphere(1,0,0)
