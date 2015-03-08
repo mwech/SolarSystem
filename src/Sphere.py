@@ -8,21 +8,8 @@ from OpenGL.GLU import *
 from OpenGL.GL import *
 import sys
 
-
-# def main():
-'''
-    glutInit(sys.argv)
-    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH)
-    glutInitWindowSize(800, 800)
-    glutCreateWindow(b"Scene")
-    glutDisplayFunc(display)
-    glutIdleFunc(display)
-    glutMainLoop()
-    return
-'''
-
-
-class Sphere():
+class Sphere(object):
+    __speed = 1
 
     def __init__(self):
         self.display()
@@ -74,12 +61,12 @@ class Sphere():
         glMatrixMode(GL_MODELVIEW)
         glLoadIdentity()
         gluLookAt(0, 0, 10,
-              0, 0, 0,
-              0, 1, 0)
+                  0, 0, 0,
+                  0, 1, 0)
 
 
     def rotation(self):
-        angle = 1
+        angle = Sphere.__speed
        #print(angle)
         glTranslate(0, -2, 3);
         glRotate(angle, 0, 1, 0)
@@ -102,16 +89,19 @@ class Sphere():
                     quit()
 
                 if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_UP:
-                        print('UP')
+                    if event.key == pygame.K_LEFT:
+                        Sphere.__speed-=1
+                        #self.rotation(3)
+                    if event.key == pygame.K_RIGHT:
+                        Sphere.__speed+=1
                     if event.key == pygame.K_DOWN:
-                        print('DOWN')
+                        Sphere.__speed=0
 
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if event.button == 4:
-                        glTranslatef(0, 0, 3.0)
+                        glTranslatef(0, 0, 0.0)
                     if event.button == 5:
-                         glTranslatef(0, 0, -3.0)
+                         glTranslatef(0, -0, 0.0)
 
                     if event.button == 1:
                         glDisable(GL_LIGHTING)
@@ -122,8 +112,8 @@ class Sphere():
 
             glClearColor(0., 0., 0., 1.)
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
-            self.drawSphere(1,0,0)
-            self.drawSphere(2,0.5,2)
+            self.drawSphere(3,0,1)
+            self.drawSphere(1,1,2)
             self.rotation()
             pygame.display.flip()
             pygame.time.wait(10)
