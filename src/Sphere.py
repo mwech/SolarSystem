@@ -9,7 +9,8 @@ from OpenGL.GL import *
 import sys
 
 class Sphere(object):
-    __speed = 1
+    __speed = 0.4
+    __starttime = time.time()
 
     def __init__(self):
         self.display()
@@ -36,12 +37,29 @@ class Sphere(object):
         glutPostRedisplay()
 
 
-    def sphereMaterial(self):
-        color = [1.0, 1., 0.0, 1.]
-        glMaterialfv(GL_FRONT, GL_DIFFUSE, color)
+    def sphereMaterial(self, mat):
+        if(mat == 1):
+            color = [1.0, 1., 0.0, 1.]
+            glMaterialfv(GL_FRONT, GL_DIFFUSE, color)
+        if(mat == 2):
+            color = [0.0, 1., 0.0, 1.]
+            glMaterialfv(GL_FRONT, GL_DIFFUSE, color)
+        if(mat == 3):
+            color = [0.5, 0.5, 1, 1.]
+            glMaterialfv(GL_FRONT, GL_DIFFUSE, color)
 
-
-    def drawSphere(self, x, y, z):
+    def drawSphere(self, x, y, z, zahl, mat):
+        #Sphere.__speed=0.3
+        if(mat == 1):
+            self.sphereMaterial(1)
+        if(mat == 2):
+            self.sphereMaterial(2)
+        if(mat == 3):
+            self.sphereMaterial(3)
+        if(zahl == 1):
+            self.rotation(1)
+        if(zahl == 2):
+            self.rotation(2)
         position = (x,y,z)
         glPushMatrix()
         try:
@@ -52,6 +70,7 @@ class Sphere(object):
             gluSphere(sphere, 1, 20, 20)
         finally:
             glPopMatrix()
+
 
 
     def perspective(self):
@@ -65,12 +84,15 @@ class Sphere(object):
                   0, 1, 0)
 
 
-    def rotation(self):
+    def rotation(self, zahl):
         angle = Sphere.__speed
-       #print(angle)
-        glTranslate(0, -2, 3);
-        glRotate(angle, 0, 1, 0)
-        glTranslate(0, 2, -3);
+        #print(angle)
+        if(zahl == 1):
+            glTranslate(1, 0, 1);
+            glRotate(angle, 0, 1, 0)
+            glTranslate(-1, 0, -1);
+        if(zahl == 2):
+            glRotate(angle, 0, 0, 0)
         return angle
 
 
@@ -80,7 +102,7 @@ class Sphere(object):
         pygame.display.set_mode(display, DOUBLEBUF | OPENGL)
         self.perspective()
         self.depth()
-        self.sphereMaterial()
+        #self.sphereMaterial()
         self.light()
         while True:
             for event in pygame.event.get():
@@ -90,10 +112,10 @@ class Sphere(object):
 
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_LEFT:
-                        Sphere.__speed-=1
+                        Sphere.__speed-=0.2
                         #self.rotation(3)
                     if event.key == pygame.K_RIGHT:
-                        Sphere.__speed+=1
+                        Sphere.__speed+=0.2
                     if event.key == pygame.K_DOWN:
                         Sphere.__speed=0
 
@@ -112,9 +134,11 @@ class Sphere(object):
 
             glClearColor(0., 0., 0., 1.)
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
-            self.drawSphere(3,0,1)
-            self.drawSphere(1,1,2)
-            self.rotation()
+            self.drawSphere(0,0,0,2,1)
+            self.drawSphere(0,0,-2,1,2)
+            self.drawSphere(3,0,-2,1,2)
+            self.drawSphere(0,0,-4,1,3)
+            self.drawSphere(3,0,-4,1,3)
             pygame.display.flip()
             pygame.time.wait(10)
         return
