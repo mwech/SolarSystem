@@ -1,3 +1,4 @@
+__author__ = 'arif'
 import sys, time
 
 from PyQt5 import uic
@@ -29,7 +30,7 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     glutInit(sys.argv)
 
-    splash_pix = QPixmap('Splashscreen_v1.jpg')
+    splash_pix = QPixmap('texturen/Splashscreen_v1.jpg')
     splash = QSplashScreen(splash_pix)
     splash.setMask(splash_pix.mask())
     splash.show()
