@@ -21,7 +21,6 @@ class Sphere(object):
         glDepthFunc(GL_LESS)
         glEnable(GL_DEPTH_TEST)
 
-
     def light(self):
         lightZeroPosition = [10., 4., 10., 1.]
         lightZeroColor = [0.8, 1.0, 0.8, 1.0]  # green tinged
@@ -35,7 +34,6 @@ class Sphere(object):
 
     def idle(self):
         glutPostRedisplay()
-
 
     def sphereMaterial(self, mat):
         if(mat == 1):
@@ -71,8 +69,6 @@ class Sphere(object):
         finally:
             glPopMatrix()
 
-
-
     def perspective(self):
         glMatrixMode(GL_PROJECTION)
         glLoadIdentity()
@@ -94,7 +90,6 @@ class Sphere(object):
         if(zahl == 2):
             glRotate(angle, 0, 0, 0)
         return angle
-
 
     def display(self):
         pygame.init()
