@@ -69,15 +69,15 @@ class Sphere(object):
         finally:
             glPopMatrix()
 
-    def perspective(self):
+    def perspective(self, liste):
         glMatrixMode(GL_PROJECTION)
         glLoadIdentity()
         gluPerspective(120., 1., 1., 50.)
         glMatrixMode(GL_MODELVIEW)
         glLoadIdentity()
-        gluLookAt(0, 0, 10,
-                  0, 0, 0,
-                  0, 1, 0)
+        gluLookAt(liste[0], liste[1], liste[2],
+                  liste[3], liste[4], liste[5],
+                  liste[6], liste[7], liste[8])
 
 
     def rotation(self, zahl):
@@ -87,15 +87,16 @@ class Sphere(object):
             glTranslate(1, 0, 1);
             glRotate(angle, 0, 1, 0)
             glTranslate(-1, 0, -1);
-        if(zahl == 2):
-            glRotate(angle, 0, 0, 0)
         return angle
 
     def display(self):
         pygame.init()
         display = (800, 600)
         pygame.display.set_mode(display, DOUBLEBUF | OPENGL)
-        self.perspective()
+        liste = [0, 0, 10,
+                 0, 0, 0,
+                 0, 1, 0]
+        self.perspective(liste)
         self.depth()
         #self.sphereMaterial()
         self.light()
@@ -106,23 +107,39 @@ class Sphere(object):
                     quit()
 
                 if event.type == pygame.KEYDOWN:
+                    #Rotation langsamer --> Pfeiltaste links
                     if event.key == pygame.K_LEFT:
                         Sphere.__speed-=0.2
-                        #self.rotation(3)
+                    #Rotation schneller --> Pfeiltaste rechts
                     if event.key == pygame.K_RIGHT:
                         Sphere.__speed+=0.2
+                    #Rotationsstop --> Pfeiltaste unten
                     if event.key == pygame.K_DOWN:
                         Sphere.__speed=0
+                    #Überkopfsicht --> Taste w
+                    if event.key == pygame.K_w:
+                        liste = [0, -5, 10,
+                                 0, 0, 0,
+                                 0, 1, 0]
+                        self.perspective(liste)
+                    #Froschperspektive --> Taste s
+                    if event.key == pygame.K_s:
+                        liste = [0, 5, 10,
+                                 0, 0, 0,
+                                 0, 1, 0]
+                        self.perspective(liste)
 
                 if event.type == pygame.MOUSEBUTTONDOWN:
+
                     if event.button == 4:
                         glTranslatef(0, 0, 0.0)
                     if event.button == 5:
                          glTranslatef(0, -0, 0.0)
-
+                    #Licht aus --> Maus links
                     if event.button == 1:
                         glDisable(GL_LIGHTING)
                         glDisable(GL_LIGHT0)
+                    #Licht an --> Maus rechts
                     if event.button == 3:
                         glEnable(GL_LIGHTING)
                         glEnable(GL_LIGHT0)
