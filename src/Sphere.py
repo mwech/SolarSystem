@@ -8,9 +8,12 @@ from OpenGL.GLU import *
 from OpenGL.GL import *
 import sys
 
+
 class Sphere(object):
-    __speed = 0.4
-    __starttime = time.time()
+    __speedPlanet = 1.5
+    __speedMond = 1
+    __speedSonne = 0
+    __zaehler = 0
 
     def __init__(self):
         self.display()
@@ -46,26 +49,34 @@ class Sphere(object):
             color = [0.5, 0.5, 1, 1.]
             glMaterialfv(GL_FRONT, GL_DIFFUSE, color)
 
-    def drawSphere(self, x, y, z, zahl, mat):
-        #Sphere.__speed=0.3
+    def rotate(self, art):
+        if art == "Sonne":
+            glTranslate(1, 0, 1)
+            glRotate(Sphere.__speedSonne*Sphere.__zaehler, 0, 1, 0)
+            glTranslate(-1, 0, -1)
+        if art == "Mond":
+            glTranslate(1, 0, 1)
+            glRotate(Sphere.__speedMond*Sphere.__zaehler, 0, 1, 0)
+            glTranslate(-1, 0, -1)
+        if art == "Planet":
+            glTranslate(1, 0, 1)
+            glRotate(Sphere.__speedPlanet*Sphere.__zaehler, 0, 1, 0)
+            glTranslate(-1, 0, -1)
+
+    def drawSphere(self, x, y, z, mat, size, art):
         if(mat == 1):
             self.sphereMaterial(1)
         if(mat == 2):
             self.sphereMaterial(2)
         if(mat == 3):
             self.sphereMaterial(3)
-        if(zahl == 1):
-            self.rotation(1)
-        if(zahl == 2):
-            self.rotation(2)
-        position = (x,y,z)
         glPushMatrix()
+        self.rotate(art)
+        position = (x,y,z)
         try:
             glTranslatef(*position)
-            glRotatef(360,1,0,0)
             sphere = gluNewQuadric()
-            # gluQuadricDrawStyle(sphere,GLU_LINE);
-            gluSphere(sphere, 1, 20, 20)
+            gluSphere(sphere, size, 20, 20)
         finally:
             glPopMatrix()
 
@@ -80,15 +91,6 @@ class Sphere(object):
                   liste[6], liste[7], liste[8])
 
 
-    def rotation(self, zahl):
-        angle = Sphere.__speed
-        #print(angle)
-        if(zahl == 1):
-            glTranslate(1, 0, 1);
-            glRotate(angle, 0, 1, 0)
-            glTranslate(-1, 0, -1);
-        return angle
-
     def display(self):
         pygame.init()
         display = (800, 600)
@@ -101,6 +103,7 @@ class Sphere(object):
         #self.sphereMaterial()
         self.light()
         while True:
+            Sphere.__zaehler+=1
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -124,7 +127,7 @@ class Sphere(object):
                         self.perspective(liste)
                     #Froschperspektive --> Taste s
                     if event.key == pygame.K_s:
-                        liste = [0, 5, 10,
+                        liste = [0, 8, 10,
                                  0, 0, 0,
                                  0, 1, 0]
                         self.perspective(liste)
@@ -146,14 +149,19 @@ class Sphere(object):
 
             glClearColor(0., 0., 0., 1.)
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
-            self.drawSphere(0,0,0,2,1)
-            self.drawSphere(0,0,-2,1,2)
-            self.drawSphere(3,0,-2,1,2)
-            self.drawSphere(0,0,-4,1,3)
-            self.drawSphere(3,0,-4,1,3)
+
+            self.drawSphere(0,0,0,1,1,"Sonne")
+
+            self.drawSphere(-3,0,-1,2,1,"Planet")
+
+            self.drawSphere(4,0,-2,2,1,"Planet")
+
+            self.drawSphere(-4,1,-2,3,0.5,"Mond")
+
+            self.drawSphere(5.5,-1,-3,3, 0.5,"Mond")
+
             pygame.display.flip()
             pygame.time.wait(10)
         return
-
 Sphere()
 
