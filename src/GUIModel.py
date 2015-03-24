@@ -1,4 +1,5 @@
 __author__ = 'arif'
+
 import sys, time
 
 from PyQt5 import uic
@@ -30,11 +31,13 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     glutInit(sys.argv)
 
+    #Setting the Splashscreen
     splash_pix = QPixmap('texturen/Splashscreen_v1.jpg')
     splash = QSplashScreen(splash_pix)
     splash.setMask(splash_pix.mask())
     splash.show()
 
+    #setting the timer for the splash screen
     time.sleep(3)
     splash.hide()
 

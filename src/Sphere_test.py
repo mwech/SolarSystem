@@ -1,164 +1,31 @@
 __author__ = 'arif'
 
-import sys
-import math
 import time
-import pygame
-from pygame.constants import DOUBLEBUF, OPENGL
 
-__author__ = 'mwech'
-from OpenGL.GLUT import *
-from OpenGL.GLU import *
-from OpenGL.GL import *
-import sys
 
-from PyQt5.QtCore import pyqtSignal, QRegExp, QSize, Qt, QTimer
-from PyQt5.QtGui import QPixmap
-from PyQt5.QtWidgets import (QAction, QApplication, QGridLayout, QInputDialog,
-        QLabel, QLineEdit, QMainWindow, QMessageBox, QScrollArea, QSizePolicy,
-        QSlider, QWidget)
-from PyQt5.QtOpenGL import QGLWidget
+from PyQt5.QtWidgets import (QApplication, QMessageBox, QSplashScreen)
+from PyQt5.QtGui import (QPixmap)
 
 try:
-    from OpenGL.GL import *
+    from OpenGL.GLUT import *
+
 except ImportError:
     app = QApplication(sys.argv)
-    QMessageBox.critical(None, "OpenGL grabber",
-            "PyOpenGL must be installed to run this example.")
+    QMessageBox.critical(None, "OpenGL grabber", "PyOpenGL must be installed to run this example.", QMessageBox.Ok)
     sys.exit(1)
 
 
-class Sphere(QGLWidget):
-    __speed = 0.4
-    __starttime = time.time()
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    glutInit(sys.argv)
 
-    def __init__(self):
-        self.display()
+    splash_pix = QPixmap('Splashscreen_v2.jpg')
+    splash = QSplashScreen(splash_pix)
+    splash.setMask(splash_pix.mask())
+    splash.show()
 
-    def depth(self):
-        glShadeModel(GL_SMOOTH)
-        glEnable(GL_CULL_FACE)
-        glDepthFunc(GL_LESS)
-        glEnable(GL_DEPTH_TEST)
+    time.sleep(3)
 
+    splash.hide()
 
-    def light(self):
-        lightZeroPosition = [10., 4., 10., 1.]
-        lightZeroColor = [0.8, 1.0, 0.8, 1.0]  # green tinged
-        glLightfv(GL_LIGHT0, GL_POSITION, lightZeroPosition)
-        glLightfv(GL_LIGHT0, GL_DIFFUSE, lightZeroColor)
-        glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 0.1)
-        glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, 0.05)
-        glEnable(GL_LIGHTING)
-        glEnable(GL_LIGHT0)
-
-
-    def idle(self):
-        glutPostRedisplay()
-
-
-    def sphereMaterial(self, mat):
-        if(mat == 1):
-            color = [1.0, 1., 0.0, 1.]
-            glMaterialfv(GL_FRONT, GL_DIFFUSE, color)
-        if(mat == 2):
-            color = [0.0, 1., 0.0, 1.]
-            glMaterialfv(GL_FRONT, GL_DIFFUSE, color)
-        if(mat == 3):
-            color = [0.5, 0.5, 1, 1.]
-            glMaterialfv(GL_FRONT, GL_DIFFUSE, color)
-
-    def drawSphere(self, x, y, z, zahl, mat):
-        #Sphere.__speed=0.3
-        if(mat == 1):
-            self.sphereMaterial(1)
-        if(mat == 2):
-            self.sphereMaterial(2)
-        if(mat == 3):
-            self.sphereMaterial(3)
-        if(zahl == 1):
-            self.rotation(1)
-        if(zahl == 2):
-            self.rotation(2)
-        position = (x,y,z)
-        glPushMatrix()
-        try:
-            glTranslatef(*position)
-            glRotatef(360,1,0,0)
-            sphere = gluNewQuadric()
-            # gluQuadricDrawStyle(sphere,GLU_LINE);
-            gluSphere(sphere, 1, 20, 20)
-        finally:
-            glPopMatrix()
-
-
-
-    def perspective(self):
-        glMatrixMode(GL_PROJECTION)
-        glLoadIdentity()
-        gluPerspective(120., 1., 1., 50.)
-        glMatrixMode(GL_MODELVIEW)
-        glLoadIdentity()
-        gluLookAt(0, 0, 10,
-                  0, 0, 0,
-                  0, 1, 0)
-
-
-    def rotation(self, zahl):
-        angle = Sphere.__speed
-        #print(angle)
-        if(zahl == 1):
-            glTranslate(1, 0, 1);
-            glRotate(angle, 0, 1, 0)
-            glTranslate(-1, 0, -1);
-        if(zahl == 2):
-            glRotate(angle, 0, 0, 0)
-        return angle
-
-
-    def display(self):
-        pygame.init()
-        display = (800, 600)
-        pygame.display.set_mode(display, DOUBLEBUF | OPENGL)
-        self.perspective()
-        self.depth()
-        #self.sphereMaterial()
-        self.light()
-        while True:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    quit()
-
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_LEFT:
-                        Sphere.__speed-=0.2
-                        #self.rotation(3)
-                    if event.key == pygame.K_RIGHT:
-                        Sphere.__speed+=0.2
-                    if event.key == pygame.K_DOWN:
-                        Sphere.__speed=0
-
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    if event.button == 4:
-                        glTranslatef(0, 0, 0.0)
-                    if event.button == 5:
-                         glTranslatef(0, -0, 0.0)
-
-                    if event.button == 1:
-                        glDisable(GL_LIGHTING)
-                        glDisable(GL_LIGHT0)
-                    if event.button == 3:
-                        glEnable(GL_LIGHTING)
-                        glEnable(GL_LIGHT0)
-
-            glClearColor(0., 0., 0., 1.)
-            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
-            self.drawSphere(0,0,0,2,1)
-            self.drawSphere(0,0,-2,1,2)
-            self.drawSphere(3,0,-2,1,2)
-            self.drawSphere(0,0,-4,1,3)
-            self.drawSphere(3,0,-4,1,3)
-            pygame.display.flip()
-            pygame.time.wait(10)
-        return
+    sys.exit(app.exec_())
