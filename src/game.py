@@ -4,6 +4,7 @@ from pygame.locals import *
 from gui import *
 
 
+
 def input(events):
     for e in events:
         if e.type == QUIT:
@@ -14,7 +15,7 @@ def input(events):
 pygame.init()
 pygame.display.set_caption("GUI Demo")
 
-window = pygame.display.set_mode((1280, 720))
+window = pygame.display.set_mode((1020, 720))
 screen = pygame.display.get_surface()
 clock = pygame.time.Clock()
 font = pygame.font.Font(None, 32)

@@ -7,6 +7,7 @@ from PyQt5.uic import loadUiType
 from PyQt5.QtGui import (QPixmap)
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QMessageBox, QSplashScreen)
 from Grabber import (GLWidget)
+from Sphere import (Sphere)
 
 try:
     from OpenGL.GLUT import *

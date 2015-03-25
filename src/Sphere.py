@@ -2,6 +2,7 @@ import time
 import pygame
 from pygame.constants import DOUBLEBUF, OPENGL
 
+
 __author__ = 'mwech'
 from OpenGL.GLUT import *
 from OpenGL.GLU import *
@@ -136,8 +137,20 @@ class Sphere(object):
                   liste[6], liste[7], liste[8])
 
     def display(self):
+        #Setting the size of the screen
+        screen = pygame.display.set_mode([1280,720])
+
+        #Splashscreen
+        image = pygame.image.load("texturen/Splashscreen_v1.jpg").convert()
+        logoimage = screen.blit(image,(0,0))
+        pygame.display.flip()
+
+        pygame.time.delay(3500)
+
         pygame.init()
         display = (800, 600)
+        screen = pygame.display.get_surface()
+
         pygame.display.set_mode(display, DOUBLEBUF | OPENGL)
         liste = [0, 0, 10,
                  0, 0, 0,
@@ -214,6 +227,9 @@ class Sphere(object):
             pygame.display.flip()
             pygame.time.wait(10)
         return
+
+
+
 Sphere()
 
 "Push Sonne Pop"
