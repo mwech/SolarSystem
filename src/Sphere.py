@@ -101,6 +101,7 @@ class Sphere(object):
             self.sphereMaterial(2)
         if(mat == 3):
             self.sphereMaterial(3)
+
         glPushMatrix()
         self.rotate(art)
         position = (x,y,z)
@@ -118,7 +119,11 @@ class Sphere(object):
                 glBindTexture(GL_TEXTURE_2D, int(texturesMoon[1]))
             gluSphere(quadratic, size, 20, 20)
         finally:
-            glPopMatrix()
+            if(art=="Sonne"):
+                glPopMatrix()
+            if(art=="Mond"):
+                glPopMatrix()
+                glPopMatrix()
 
     def perspective(self, liste):
         glMatrixMode(GL_PROJECTION)
@@ -129,7 +134,6 @@ class Sphere(object):
         gluLookAt(liste[0], liste[1], liste[2],
                   liste[3], liste[4], liste[5],
                   liste[6], liste[7], liste[8])
-
 
     def display(self):
         pygame.init()
@@ -201,14 +205,16 @@ class Sphere(object):
 
             self.drawSphere(-3,0,-1,2,1,"Planet",2)
 
+            self.drawSphere(-4,1,4,3,0.5,"Mond",3)
+
             self.drawSphere(4,0,-2,2,1,"Planet",2)
 
-            self.drawSphere(-4,1,-2,3,0.5,"Mond",3)
-
-            self.drawSphere(5.5,-1,-3,3, 0.5,"Mond",3)
+            self.drawSphere(5.5,3,-3,3, 0.5,"Mond",3)
 
             pygame.display.flip()
             pygame.time.wait(10)
         return
 Sphere()
 
+"Push Sonne Pop"
+"Push Planet Push Mond Pop Pop"
