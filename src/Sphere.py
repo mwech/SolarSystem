@@ -7,6 +7,7 @@ from OpenGL.GLUT import *
 from OpenGL.GLU import *
 from OpenGL.GL import *
 import sys
+from PIL import Image
 
 
 class Sphere(object):
@@ -18,11 +19,82 @@ class Sphere(object):
     def __init__(self):
         self.display()
 
+    def LoadTextures(self):
+        global textures, quadratic
+        image = Image.open("sun.jpg")
+
+        ix = image.size[0]
+        iy = image.size[1]
+        image = image.convert("RGBA").tostring("raw", "RGBA")
+
+        # Create Texture
+        textures = glGenTextures(3)
+
+        glBindTexture(GL_TEXTURE_2D, int(textures[1]))   # 2d texture (x and y size)
+
+        glPixelStorei(GL_UNPACK_ALIGNMENT,1)
+        glTexImage2D(GL_TEXTURE_2D, 0, 3, ix, iy, 0, GL_RGBA, GL_UNSIGNED_BYTE, image)
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP)
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP)
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT)
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT)
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST)
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST)
+        glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL)
+
+    def LoadTextures2(self):
+        global textures2, quadratic2
+        image2 = Image.open("planet.png")
+
+        ix2 = image2.size[0]
+        iy2 = image2.size[1]
+        image2 = image2.convert("RGBA").tostring("raw", "RGBA")
+
+        # Create Texture
+        textures2 = glGenTextures(3)
+
+        glBindTexture(GL_TEXTURE_2D, int(textures2[1]))   # 2d texture (x and y size)
+
+        glPixelStorei(GL_UNPACK_ALIGNMENT,1)
+        glTexImage2D(GL_TEXTURE_2D, 0, 3, ix2, iy2, 0, GL_RGBA, GL_UNSIGNED_BYTE, image2)
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP)
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP)
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT)
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT)
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST)
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST)
+        glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL)
+
+    def LoadTextures3(self):
+        global textures3, quadratic3
+        image3 = Image.open("moon.jpg")
+
+        ix3 = image3.size[0]
+        iy3 = image3.size[1]
+        image3 = image3.convert("RGBA").tostring("raw", "RGBA")
+
+        # Create Texture
+        textures3 = glGenTextures(3)
+
+        glBindTexture(GL_TEXTURE_2D, int(textures3[1]))   # 2d texture (x and y size)
+
+        glPixelStorei(GL_UNPACK_ALIGNMENT,1)
+        glTexImage2D(GL_TEXTURE_2D, 0, 3, ix3, iy3, 0, GL_RGBA, GL_UNSIGNED_BYTE, image3)
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP)
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP)
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT)
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT)
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST)
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST)
+        glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL)
+
     def depth(self):
         glShadeModel(GL_SMOOTH)
         glEnable(GL_CULL_FACE)
         glDepthFunc(GL_LESS)
         glEnable(GL_DEPTH_TEST)
+
+        glEnable(GL_TEXTURE_2D)
 
     def light(self):
         lightZeroPosition = [10., 4., 10., 1.]
@@ -33,7 +105,6 @@ class Sphere(object):
         glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, 0.05)
         glEnable(GL_LIGHTING)
         glEnable(GL_LIGHT0)
-
 
     def idle(self):
         glutPostRedisplay()
@@ -63,7 +134,7 @@ class Sphere(object):
             glRotate(Sphere.__speedPlanet*Sphere.__zaehler, 0, 1, 0)
             glTranslate(-1, 0, -1)
 
-    def drawSphere(self, x, y, z, mat, size, art):
+    def drawSphere(self, x, y, z, mat, size, art, textur):
         if(mat == 1):
             self.sphereMaterial(1)
         if(mat == 2):
@@ -75,8 +146,17 @@ class Sphere(object):
         position = (x,y,z)
         try:
             glTranslatef(*position)
-            sphere = gluNewQuadric()
-            gluSphere(sphere, size, 20, 20)
+            quadratic = gluNewQuadric()
+            if textur == 1:
+                gluQuadricTexture(quadratic, GL_TRUE)
+                glBindTexture(GL_TEXTURE_2D, int(textures[1]))
+            if textur == 2:
+                gluQuadricTexture(quadratic, GL_TRUE)
+                glBindTexture(GL_TEXTURE_2D, int(textures2[1]))
+            if textur == 3:
+                gluQuadricTexture(quadratic, GL_TRUE)
+                glBindTexture(GL_TEXTURE_2D, int(textures3[1]))
+            gluSphere(quadratic, size, 20, 20)
         finally:
             glPopMatrix()
 
@@ -99,6 +179,9 @@ class Sphere(object):
                  0, 0, 0,
                  0, 1, 0]
         self.perspective(liste)
+        self.LoadTextures()
+        self.LoadTextures2()
+        self.LoadTextures3()
         self.depth()
         #self.sphereMaterial()
         self.light()
@@ -112,13 +195,16 @@ class Sphere(object):
                 if event.type == pygame.KEYDOWN:
                     #Rotation langsamer --> Pfeiltaste links
                     if event.key == pygame.K_LEFT:
-                        Sphere.__speed-=0.2
+                        Sphere.__speedPlanet-=0.3
+                        Sphere.__speedMond-=0.2
                     #Rotation schneller --> Pfeiltaste rechts
                     if event.key == pygame.K_RIGHT:
-                        Sphere.__speed+=0.2
+                        Sphere.__speedPlanet+=0.3
+                        Sphere.__speedMond+=0.2
                     #Rotationsstop --> Pfeiltaste unten
                     if event.key == pygame.K_DOWN:
-                        Sphere.__speed=0
+                        Sphere.__speedPlanet=0
+                        Sphere.__speedMond=0
                     #Überkopfsicht --> Taste w
                     if event.key == pygame.K_w:
                         liste = [0, -5, 10,
@@ -132,6 +218,9 @@ class Sphere(object):
                                  0, 1, 0]
                         self.perspective(liste)
 
+                    if event.key == pygame.K_j:
+                        glDisable(GL_TEXTURE_2D)
+
                 if event.type == pygame.MOUSEBUTTONDOWN:
 
                     if event.button == 4:
@@ -140,25 +229,24 @@ class Sphere(object):
                          glTranslatef(0, -0, 0.0)
                     #Licht aus --> Maus links
                     if event.button == 1:
-                        glDisable(GL_LIGHTING)
-                        glDisable(GL_LIGHT0)
+                        glDisable(GL_TEXTURE_2D)
+                        #glDisable(GL_LIGHT0)
                     #Licht an --> Maus rechts
                     if event.button == 3:
-                        glEnable(GL_LIGHTING)
-                        glEnable(GL_LIGHT0)
+                        glEnable(GL_TEXTURE_2D)
 
             glClearColor(0., 0., 0., 1.)
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
-            self.drawSphere(0,0,0,1,1,"Sonne")
+            self.drawSphere(0,0,0,1,1,"Sonne",1)
 
-            self.drawSphere(-3,0,-1,2,1,"Planet")
+            self.drawSphere(-3,0,-1,2,1,"Planet",2)
 
-            self.drawSphere(4,0,-2,2,1,"Planet")
+            self.drawSphere(4,0,-2,2,1,"Planet",2)
 
-            self.drawSphere(-4,1,-2,3,0.5,"Mond")
+            self.drawSphere(-4,1,-2,3,0.5,"Mond",3)
 
-            self.drawSphere(5.5,-1,-3,3, 0.5,"Mond")
+            self.drawSphere(5.5,-1,-3,3, 0.5,"Mond",3)
 
             pygame.display.flip()
             pygame.time.wait(10)
