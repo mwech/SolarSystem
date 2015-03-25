@@ -205,11 +205,11 @@ class Sphere(object):
 
             self.drawSphere(-3,0,-1,2,1,"Planet",2)
 
-            self.drawSphere(-4,1,4,3,0.5,"Mond",3)
+            self.drawSphere(-3,1,-2,3,0.5,"Mond",3)
 
             self.drawSphere(4,0,-2,2,1,"Planet",2)
 
-            self.drawSphere(5.5,3,-3,3, 0.5,"Mond",3)
+            self.drawSphere(4.5,3,-2,3, 0.5,"Mond",3)
 
             pygame.display.flip()
             pygame.time.wait(10)
