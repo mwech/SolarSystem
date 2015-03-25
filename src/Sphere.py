@@ -19,67 +19,28 @@ class Sphere(object):
     def __init__(self):
         self.display()
 
-    def LoadTextures(self):
-        global textures, quadratic
-        image = Image.open("sun.jpg")
+    def LoadTextures(self, name):
 
+        image = Image.open(name)
         ix = image.size[0]
         iy = image.size[1]
         image = image.convert("RGBA").tostring("raw", "RGBA")
-
         # Create Texture
-        textures = glGenTextures(3)
-
-        glBindTexture(GL_TEXTURE_2D, int(textures[1]))   # 2d texture (x and y size)
+        if name == "sun.jpg":
+            global texturesSun
+            texturesSun = glGenTextures(3)
+            glBindTexture(GL_TEXTURE_2D, int(texturesSun[1]))   # 2d texture (x and y size)
+        if name == "planet.png":
+            global texturesPlanet
+            texturesPlanet = glGenTextures(3)
+            glBindTexture(GL_TEXTURE_2D, int(texturesPlanet[1]))   # 2d texture (x and y size)
+        if name == "moon.jpg":
+            global texturesMoon
+            texturesMoon = glGenTextures(3)
+            glBindTexture(GL_TEXTURE_2D, int(texturesMoon[1]))   # 2d texture (x and y size)
 
         glPixelStorei(GL_UNPACK_ALIGNMENT,1)
         glTexImage2D(GL_TEXTURE_2D, 0, 3, ix, iy, 0, GL_RGBA, GL_UNSIGNED_BYTE, image)
-        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP)
-        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP)
-        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT)
-        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT)
-        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST)
-        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST)
-        glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL)
-
-    def LoadTextures2(self):
-        global textures2, quadratic2
-        image2 = Image.open("planet.png")
-
-        ix2 = image2.size[0]
-        iy2 = image2.size[1]
-        image2 = image2.convert("RGBA").tostring("raw", "RGBA")
-
-        # Create Texture
-        textures2 = glGenTextures(3)
-
-        glBindTexture(GL_TEXTURE_2D, int(textures2[1]))   # 2d texture (x and y size)
-
-        glPixelStorei(GL_UNPACK_ALIGNMENT,1)
-        glTexImage2D(GL_TEXTURE_2D, 0, 3, ix2, iy2, 0, GL_RGBA, GL_UNSIGNED_BYTE, image2)
-        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP)
-        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP)
-        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT)
-        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT)
-        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST)
-        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST)
-        glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL)
-
-    def LoadTextures3(self):
-        global textures3, quadratic3
-        image3 = Image.open("moon.jpg")
-
-        ix3 = image3.size[0]
-        iy3 = image3.size[1]
-        image3 = image3.convert("RGBA").tostring("raw", "RGBA")
-
-        # Create Texture
-        textures3 = glGenTextures(3)
-
-        glBindTexture(GL_TEXTURE_2D, int(textures3[1]))   # 2d texture (x and y size)
-
-        glPixelStorei(GL_UNPACK_ALIGNMENT,1)
-        glTexImage2D(GL_TEXTURE_2D, 0, 3, ix3, iy3, 0, GL_RGBA, GL_UNSIGNED_BYTE, image3)
         glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP)
         glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP)
         glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT)
@@ -93,7 +54,6 @@ class Sphere(object):
         glEnable(GL_CULL_FACE)
         glDepthFunc(GL_LESS)
         glEnable(GL_DEPTH_TEST)
-
         glEnable(GL_TEXTURE_2D)
 
     def light(self):
@@ -149,13 +109,13 @@ class Sphere(object):
             quadratic = gluNewQuadric()
             if textur == 1:
                 gluQuadricTexture(quadratic, GL_TRUE)
-                glBindTexture(GL_TEXTURE_2D, int(textures[1]))
+                glBindTexture(GL_TEXTURE_2D, int(texturesSun[1]))
             if textur == 2:
                 gluQuadricTexture(quadratic, GL_TRUE)
-                glBindTexture(GL_TEXTURE_2D, int(textures2[1]))
+                glBindTexture(GL_TEXTURE_2D, int(texturesPlanet[1]))
             if textur == 3:
                 gluQuadricTexture(quadratic, GL_TRUE)
-                glBindTexture(GL_TEXTURE_2D, int(textures3[1]))
+                glBindTexture(GL_TEXTURE_2D, int(texturesMoon[1]))
             gluSphere(quadratic, size, 20, 20)
         finally:
             glPopMatrix()
@@ -179,9 +139,9 @@ class Sphere(object):
                  0, 0, 0,
                  0, 1, 0]
         self.perspective(liste)
-        self.LoadTextures()
-        self.LoadTextures2()
-        self.LoadTextures3()
+        self.LoadTextures("sun.jpg")
+        self.LoadTextures("planet.png")
+        self.LoadTextures("moon.jpg")
         self.depth()
         #self.sphereMaterial()
         self.light()
@@ -230,7 +190,6 @@ class Sphere(object):
                     #Licht aus --> Maus links
                     if event.button == 1:
                         glDisable(GL_TEXTURE_2D)
-                        #glDisable(GL_LIGHT0)
                     #Licht an --> Maus rechts
                     if event.button == 3:
                         glEnable(GL_TEXTURE_2D)
