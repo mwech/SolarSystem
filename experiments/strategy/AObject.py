@@ -7,13 +7,13 @@ class AObject(object):
         pass
 
     @abc.abstractmethod
-    def set_rotation_verhalten(self, rv):
+    def set_util_verhalten(self, uv):
         """
 
-        :param rv: rotationverhalten
+        :param uv: utilverhalten
         :return: /
         """
-        self._rotation_verhalten = rv
+        self._util_verhalten = uv
 
     @abc.abstractmethod
     def set_design_verhalten(self, dv):
@@ -25,12 +25,16 @@ class AObject(object):
         self._design_verhalten = dv
 
     @abc.abstractmethod
-    def perform_rotation(self):
+    def perform_util(self):
         """
 
         :return: /
         """
-        self._rotation_verhalten.rotieren()
+        self._util_verhalten.light()
+        self._util_verhalten.depth()
+        self._util_verhalten.perspective(1)
+        self._util_verhalten.loadTexture("hallo")
+
 
     @abc.abstractmethod
     def perform_design(self):
@@ -38,4 +42,6 @@ class AObject(object):
 
         :return: /
         """
-        self._design_verhalten.designe()
+        self._design_verhalten.sun(4,0,-2,2,1,"Planet",2)
+        self._design_verhalten.planet(4,0,-2,2,1,"Planet",2)
+        self._design_verhalten.mond(4,0,-2,2,1,"Planet",2)

@@ -7,9 +7,23 @@ class Design(DesignVerhalten):
     Design
     :param DesignVerhalten: reference of the DesignVerhalten class
     """
-    def designe(self):
+    def sun(self, x, y, z, mat, size, art, textur):
         """
 
         :return: nothing
         """
-        print("designe!")
+        print("sun!")
+
+    def planet(self, x, y, z, mat, size, art, textur):
+        """
+
+        :return: nothing
+        """
+        print("planet!")
+
+    def mond(self, x, y, z, mat, size, art, textur):
+        """
+
+        :return: nothing
+        """
+        print("mond!")

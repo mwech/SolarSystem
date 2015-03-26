@@ -1,15 +1,16 @@
 __author__ = 'mwech'
+
 import abc
 
-class DesignVerhalten():
+class UtilVerhalten():
     """
-    DesignVerhalten
+    UtilVerhalten
     :param:nothing
     """
     __metaclass__ = abc.ABCMeta
 
     @abc.abstractmethod
-    def sun(self, x, y, z, mat, size, art, textur):
+    def light(self):
         """
 
         :return: is empty
@@ -17,7 +18,7 @@ class DesignVerhalten():
         return
 
     @abc.abstractmethod
-    def planet(self, x, y, z, mat, size, art, textur):
+    def depth(self):
         """
 
         :return: is empty
@@ -25,7 +26,15 @@ class DesignVerhalten():
         return
 
     @abc.abstractmethod
-    def mond(self, x, y, z, mat, size, art, textur):
+    def perspective(self, liste):
+        """
+
+        :return: is empty
+        """
+        return
+
+    @abc.abstractmethod
+    def loadTexture(self, name):
         """
 
         :return: is empty

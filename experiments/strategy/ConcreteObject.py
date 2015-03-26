@@ -1,6 +1,6 @@
 from experiments.strategy.AObject import AObject
 from experiments.strategy.Design import Design
-from experiments.strategy.Rotation import Rotation
+from experiments.strategy.Util import Util
 
 __author__ = 'mwech'
 '''
@@ -20,7 +20,8 @@ class ConcreteObject(AObject):
         """
         AObject.__init__(self)
 
-        rotation_instanz = Rotation()
-        self._rotation_verhalten = rotation_instanz
+        util_instanz = Util()
+        self._util_verhalten = util_instanz
+
         design_instanz = Design()
         self._design_verhalten = design_instanz
