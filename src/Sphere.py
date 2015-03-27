@@ -1,5 +1,6 @@
 import time
 import pygame
+import math
 from pygame.constants import DOUBLEBUF, OPENGL
 
 
@@ -31,7 +32,7 @@ class Sphere(object):
             global texturesSun
             texturesSun = glGenTextures(3)
             glBindTexture(GL_TEXTURE_2D, int(texturesSun[1]))   # 2d texture (x and y size)
-        if name == "planet.png":
+        if name == "texturen/world2.png":
             global texturesPlanet
             texturesPlanet = glGenTextures(3)
             glBindTexture(GL_TEXTURE_2D, int(texturesPlanet[1]))   # 2d texture (x and y size)
@@ -83,17 +84,18 @@ class Sphere(object):
 
     def rotate(self, art):
         if art == "Sonne":
-            glTranslate(1, 0, 1)
             glRotate(Sphere.__speedSonne*Sphere.__zaehler, 0, 1, 0)
-            glTranslate(-1, 0, -1)
-        if art == "Mond":
             glTranslate(1, 0, 1)
-            glRotate(Sphere.__speedMond*Sphere.__zaehler, 0, 1, 0)
-            glTranslate(-1, 0, -1)
+
         if art == "Planet":
-            glTranslate(1, 0, 1)
             glRotate(Sphere.__speedPlanet*Sphere.__zaehler, 0, 1, 0)
-            glTranslate(-1, 0, -1)
+            glTranslate(1, 0, 1)
+
+        if art == "Mond":
+            glRotate(Sphere.__speedMond*Sphere.__zaehler, 0, 1, 0)
+            glTranslate(1, 0, 1)
+
+
 
     def drawSphere(self, x, y, z, mat, size, art, textur):
         if(mat == 1):
@@ -126,48 +128,62 @@ class Sphere(object):
                 glPopMatrix()
                 glPopMatrix()
 
-    def perspective(self, liste):
+
+    def perspective(self):
         glMatrixMode(GL_PROJECTION)
         glLoadIdentity()
-        gluPerspective(120., 1., 1., 50.)
+        gluPerspective(50, 1280/720, 1, 50)
         glMatrixMode(GL_MODELVIEW)
         glLoadIdentity()
-        gluLookAt(liste[0], liste[1], liste[2],
-                  liste[3], liste[4], liste[5],
-                  liste[6], liste[7], liste[8])
+        gluLookAt(0, 0, -30, 0, 0, 0, 0, 1, 0)
 
     def display(self):
         #Setting the size of the screen
-        screen = pygame.display.set_mode([1280,720])
+        screen = pygame.display.set_mode([1280, 720])
 
+        """
         #Splashscreen
         image = pygame.image.load("texturen/Splashscreen_v1.jpg").convert()
-        logoimage = screen.blit(image,(0,0))
+        logoimage = screen.blit(image, (0, 0))
         pygame.display.flip()
 
-        pygame.time.delay(3500)
+        pygame.time.delay(2000)
+        """
 
         pygame.init()
-        display = (800, 600)
+        display = (1280, 720)
         screen = pygame.display.get_surface()
 
         pygame.display.set_mode(display, DOUBLEBUF | OPENGL)
-        liste = [0, 0, 10,
-                 0, 0, 0,
-                 0, 1, 0]
-        self.perspective(liste)
+        self.perspective()
         self.LoadTextures("sun.jpg")
-        self.LoadTextures("planet.png")
+        self.LoadTextures("texturen/world2.png")
         self.LoadTextures("moon.jpg")
         self.depth()
         #self.sphereMaterial()
         self.light()
+
+        listenToMouse = False
+
+        point = [0, 0, -15]
+        cpoint = [0, 0, 0]
+
         while True:
-            Sphere.__zaehler+=1
+            Sphere.__zaehler += 1
+
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     quit()
+
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if event.button == 2:
+                        listenToMouse = True
+                        self.mouse_pos = pygame.mouse.get_pos()
+
+                if event.type == pygame.MOUSEBUTTONUP:
+                    if event.button == 2:
+                        listenToMouse = False
 
                 if event.type == pygame.KEYDOWN:
                     #Rotation langsamer --> Pfeiltaste links
@@ -211,18 +227,37 @@ class Sphere(object):
                     if event.button == 3:
                         glEnable(GL_TEXTURE_2D)
 
+            if listenToMouse:
+                rel = pygame.mouse.get_rel()
+
+                rx = cpoint[0] + rel[0]
+                ry = cpoint[1] + rel[1]
+
+                bx = rx * math.pi/180
+                by = ry * math.pi/180
+
+                x = point[2] * math.cos(bx) * math.sin(by)
+                y = point[2] * math.sin(bx) * math.sin(by)
+                z = point[2] * math.cos(by)
+
+                glLoadIdentity()
+                gluLookAt(x, y, z, 0, 0, 0, 0, 1, 0)
+
+                cpoint[0] = rx
+                cpoint[1] = ry
+
             glClearColor(0., 0., 0., 1.)
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
             self.drawSphere(0,0,0,1,1,"Sonne",1)
 
-            self.drawSphere(-3,0,-1,2,1,"Planet",2)
+            self.drawSphere(12,0,0,0.5,0.5,"Planet",2)
 
-            self.drawSphere(-3,1,-2,3,0.5,"Mond",3)
+            self.drawSphere(-2, 0, -0.25, 0.25, 0.25, "Mond", 3)
 
-            self.drawSphere(4,0,-2,2,1,"Planet",2)
+            #self.drawSphere(4,0,-2,2,1,"Planet",2)
 
-            self.drawSphere(4.5,3,-2,3, 0.5,"Mond",3)
+            #self.drawSphere(4.5,3,-2,3, 0.5,"Mond",3)
 
             pygame.display.flip()
             pygame.time.wait(10)
