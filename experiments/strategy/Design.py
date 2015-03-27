@@ -10,7 +10,7 @@ class Design(DesignVerhalten):
     Design
     :param DesignVerhalten: reference of the DesignVerhalten class
     """
-    def sun(self, x, y, z, mat, size, art, textur):
+    def sun(self, x, y, z, mat, size, art, textur, number):
         """
 
         :return: nothing
@@ -35,7 +35,7 @@ class Design(DesignVerhalten):
         ROTATION
         """
         glTranslate(1, 0, 1)
-        glRotate(referenz.speedSonne*referenz.zaehler, 0, 1, 0)
+        glRotate(referenz.speedSonne*number, 0, 1, 0)
         glTranslate(-1, 0, -1)
 
         position = (x,y,z)
@@ -51,7 +51,7 @@ class Design(DesignVerhalten):
             glPopMatrix()
 
 
-    def planet(self, x, y, z, mat, size, art, textur):
+    def planet(self, x, y, z, mat, size, art, textur, number):
         """
 
         :return: nothing
@@ -69,10 +69,11 @@ class Design(DesignVerhalten):
         if(mat == 3):
             color = [0.5, 0.5, 1, 1.]
             glMaterialfv(GL_FRONT, GL_DIFFUSE, color)
-
+        #print(referenz.zaehler)
         glPushMatrix()
         glTranslate(1, 0, 1)
-        glRotate(referenz.speedPlanet*referenz.zaehler, 0, 1, 0)
+
+        glRotate(referenz.speedPlanet*number, 0, 1, 0)
         glTranslate(-1, 0, -1)
         position = (x,y,z)
 
@@ -86,7 +87,7 @@ class Design(DesignVerhalten):
 
 
 
-    def mond(self, x, y, z, mat, size, art, textur):
+    def mond(self, x, y, z, mat, size, art, textur, number):
         """
 
         :return: nothing
@@ -104,7 +105,7 @@ class Design(DesignVerhalten):
 
         glPushMatrix()
         glTranslate(1, 0, 1)
-        glRotate(referenz.speedMond*referenz.zaehler, 0, 1, 0)
+        glRotate(referenz.speedMond*number, 0, 1, 0)
         glTranslate(-1, 0, -1)
         position = (x,y,z)
         try:
