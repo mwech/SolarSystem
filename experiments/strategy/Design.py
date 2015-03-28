@@ -10,14 +10,8 @@ class Design(DesignVerhalten):
     Design
     :param DesignVerhalten: reference of the DesignVerhalten class
     """
-    def sun(self, x, y, z, mat, size, art, textur, number):
-        """
 
-        :return: nothing
-        """
-        """
-        MATERIALS
-        """
+    def drawSphere(self, x, y, z, mat, size, art, textur, number):
         referenz = ObjectValues()
         if(mat == 1):
             color = [1.0, 1., 0.0, 1.]
@@ -30,92 +24,37 @@ class Design(DesignVerhalten):
             glMaterialfv(GL_FRONT, GL_DIFFUSE, color)
 
         glPushMatrix()
-
-        """
-        ROTATION
-        """
-        glTranslate(1, 0, 1)
-        glRotate(referenz.speedSonne*number, 0, 1, 0)
-        glTranslate(-1, 0, -1)
-
+        self.rotate(art, number, referenz)
         position = (x,y,z)
         try:
             glTranslatef(*position)
             quadratic = gluNewQuadric()
-            #print(referenz.texturesSun)
-            gluQuadricTexture(quadratic, GL_TRUE)
-            glBindTexture(GL_TEXTURE_2D, int(referenz.texturesSun[1]))
-
+            if textur == 1:
+                gluQuadricTexture(quadratic, GL_TRUE)
+                glBindTexture(GL_TEXTURE_2D, int(referenz.texturesSun[1]))
+            if textur == 2:
+                gluQuadricTexture(quadratic, GL_TRUE)
+                glBindTexture(GL_TEXTURE_2D, int(referenz.texturesPlanet[1]))
+            if textur == 3:
+                gluQuadricTexture(quadratic, GL_TRUE)
+                glBindTexture(GL_TEXTURE_2D, int(referenz.texturesMoon[1]))
             gluSphere(quadratic, size, 20, 20)
         finally:
-            glPopMatrix()
-
-
-    def planet(self, x, y, z, mat, size, art, textur, number):
-        """
-
-        :return: nothing
-        """
-        """
-        MATERIALS
-        """
-        referenz = ObjectValues()
-        if(mat == 1):
-            color = [1.0, 1., 0.0, 1.]
-            glMaterialfv(GL_FRONT, GL_DIFFUSE, color)
-        if(mat == 2):
-            color = [0.0, 1., 0.0, 1.]
-            glMaterialfv(GL_FRONT, GL_DIFFUSE, color)
-        if(mat == 3):
-            color = [0.5, 0.5, 1, 1.]
-            glMaterialfv(GL_FRONT, GL_DIFFUSE, color)
-        #print(referenz.zaehler)
-        glPushMatrix()
-        glTranslate(1, 0, 1)
-
-        glRotate(referenz.speedPlanet*number, 0, 1, 0)
-        glTranslate(-1, 0, -1)
-        position = (x,y,z)
-
-        glTranslatef(*position)
-        quadratic = gluNewQuadric()
-
-        gluQuadricTexture(quadratic, GL_TRUE)
-        glBindTexture(GL_TEXTURE_2D, int(referenz.texturesPlanet[1]))
-
-        gluSphere(quadratic, size, 20, 20)
+            if(art=="Sonne"):
+                glPopMatrix()
+            if(art=="Mond"):
+                glPopMatrix()
+                glPopMatrix()
 
 
 
-    def mond(self, x, y, z, mat, size, art, textur, number):
-        """
-
-        :return: nothing
-        """
-        referenz = ObjectValues()
-        if(mat == 1):
-            color = [1.0, 1., 0.0, 1.]
-            glMaterialfv(GL_FRONT, GL_DIFFUSE, color)
-        if(mat == 2):
-            color = [0.0, 1., 0.0, 1.]
-            glMaterialfv(GL_FRONT, GL_DIFFUSE, color)
-        if(mat == 3):
-            color = [0.5, 0.5, 1, 1.]
-            glMaterialfv(GL_FRONT, GL_DIFFUSE, color)
-
-        glPushMatrix()
-        glTranslate(1, 0, 1)
-        glRotate(referenz.speedMond*number, 0, 1, 0)
-        glTranslate(-1, 0, -1)
-        position = (x,y,z)
-        try:
-            glTranslatef(*position)
-            quadratic = gluNewQuadric()
-
-            gluQuadricTexture(quadratic, GL_TRUE)
-            glBindTexture(GL_TEXTURE_2D, int(referenz.texturesMoon[1]))
-
-            gluSphere(quadratic, size, 20, 20)
-        finally:
-            glPopMatrix()
-            glPopMatrix()
+    def rotate(self, art, number, referenz):
+        if art == "Sonne":
+            glRotate(referenz.speedSonne*number, 0, 1, 0)
+            glTranslate(1, 0, 1)
+        if art == "Planet":
+            glRotate(referenz.speedPlanet*number, 0, 1, 0)
+            glTranslate(1, 0, 1)
+        if art == "Mond":
+            glRotate(referenz.speedMond*number, 0, 1, 0)
+            glTranslate(1, 0, 1)
