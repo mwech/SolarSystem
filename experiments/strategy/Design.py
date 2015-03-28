@@ -13,6 +13,7 @@ class Design(DesignVerhalten):
 
     def drawSphere(self, x, y, z, mat, size, art, textur, number):
         referenz = ObjectValues()
+
         if(mat == 1):
             color = [1.0, 1., 0.0, 1.]
             glMaterialfv(GL_FRONT, GL_DIFFUSE, color)
@@ -29,6 +30,7 @@ class Design(DesignVerhalten):
         try:
             glTranslatef(*position)
             quadratic = gluNewQuadric()
+
             if textur == 1:
                 gluQuadricTexture(quadratic, GL_TRUE)
                 glBindTexture(GL_TEXTURE_2D, int(referenz.texturesSun[1]))
@@ -38,6 +40,7 @@ class Design(DesignVerhalten):
             if textur == 3:
                 gluQuadricTexture(quadratic, GL_TRUE)
                 glBindTexture(GL_TEXTURE_2D, int(referenz.texturesMoon[1]))
+
             gluSphere(quadratic, size, 20, 20)
         finally:
             if(art=="Sonne"):

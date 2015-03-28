@@ -16,14 +16,19 @@ class Util(UtilVerhalten):
 
         :return: nothing
         """
-        lightZeroPosition = [10., 4., 10., 1.]
+        lightZeroPosition = [0., 0., -6., 1]
         lightZeroColor = [0.8, 1.0, 0.8, 1.0]  # green tinged
         glLightfv(GL_LIGHT0, GL_POSITION, lightZeroPosition)
         glLightfv(GL_LIGHT0, GL_DIFFUSE, lightZeroColor)
-        glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 0.1)
-        glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, 0.05)
+        glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 0.2)
+        glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, 0.1)
+        glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP)
+        glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP)
+        glEnable(GL_TEXTURE_GEN_S)
+        glEnable(GL_TEXTURE_GEN_T)
         glEnable(GL_LIGHTING)
         glEnable(GL_LIGHT0)
+
 
     def depth(self):
         """
@@ -34,7 +39,7 @@ class Util(UtilVerhalten):
         glEnable(GL_CULL_FACE)
         glDepthFunc(GL_LESS)
         glEnable(GL_DEPTH_TEST)
-        glEnable(GL_TEXTURE_2D)
+
 
     def perspective(self, liste):
         """
@@ -80,3 +85,4 @@ class Util(UtilVerhalten):
         glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST)
         glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST)
         glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL)
+        glEnable(GL_TEXTURE_2D)

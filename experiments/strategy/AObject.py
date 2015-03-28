@@ -34,9 +34,11 @@ class AObject(object):
         liste = [0, 0, 10,
                  0, 0, 0,
                  0, 1, 0]
-        self._util_verhalten.light()
+
         self._util_verhalten.depth()
+        self._util_verhalten.light()
         self._util_verhalten.perspective(liste)
+
         self._util_verhalten.loadTexture("sun.jpg")
         self._util_verhalten.loadTexture("planet.png")
         self._util_verhalten.loadTexture("moon.jpg")

@@ -1,6 +1,7 @@
 from experiments.strategy.ConcreteObject import ConcreteObject
 from experiments.strategy.ObjectValues import ObjectValues
 from experiments.strategy.SplashScreen import SplashScreen
+from experiments.strategy.Event import Event
 from OpenGL.GLUT import *
 from OpenGL.GLU import *
 from OpenGL.GL import *
@@ -38,10 +39,8 @@ class main():
         referenz = ObjectValues()
         zaehler = 0
         while True:
-            for event in pygame.event.get():
-                if event.type == QUIT:
-                    pygame.quit()
-                    quit()
+            instEvent = Event()
+            instEvent.controllEvents()
             zaehler += 1
             glClearColor(0., 0., 0., 1.)
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
