@@ -35,7 +35,10 @@ class main():
         pygame.display.set_mode(display, DOUBLEBUF | OPENGL)
 
         concrete = ConcreteObject()
-        concrete.perform_util()
+        liste = [0, 0, 10,
+                 0, 0, 0,
+                 0, 1, 0]
+        concrete.perform_util(liste)
         referenz = ObjectValues()
         zaehler = 0
         while True:

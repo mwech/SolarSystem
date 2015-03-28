@@ -26,19 +26,14 @@ class AObject(object):
         self._design_verhalten = dv
 
     @abc.abstractmethod
-    def perform_util(self):
+    def perform_util(self, liste):
         """
 
         :return: /
         """
-        liste = [0, 0, 10,
-                 0, 0, 0,
-                 0, 1, 0]
-
         self._util_verhalten.depth()
         self._util_verhalten.light()
         self._util_verhalten.perspective(liste)
-
         self._util_verhalten.loadTexture("sun.jpg")
         self._util_verhalten.loadTexture("planet.png")
         self._util_verhalten.loadTexture("moon.jpg")
@@ -53,6 +48,5 @@ class AObject(object):
         self._design_verhalten.drawSphere(0,0,0,1,1,"Sonne",1,number)
         self._design_verhalten.drawSphere(-5,0,-2,2,1,"Planet",2,number)
         self._design_verhalten.drawSphere(-2,1,-2,3,0.2,"Mond",3,number)
-
         self._design_verhalten.drawSphere(4,0,-2,2,1,"Planet",2,number)
         self._design_verhalten.drawSphere(0,1,-1,3, 0.2,"Mond",3,number)
