@@ -1,10 +1,11 @@
 from experiments.strategy.ConcreteObject import ConcreteObject
 from experiments.strategy.ObjectValues import ObjectValues
+from experiments.strategy.SplashScreen import SplashScreen
 from OpenGL.GLUT import *
 from OpenGL.GLU import *
 from OpenGL.GL import *
 import pygame
-from pygame.constants import DOUBLEBUF, OPENGL
+from pygame.constants import DOUBLEBUF, OPENGL, QUIT
 
 __author__ = 'mwech'
 
@@ -19,12 +20,12 @@ class main():
 
         :return: nothing
         """
-        """SPLASHSCREEN INIT """
-        screen = pygame.display.set_mode([1280, 720])  # Setting the size of the screen
-        image = pygame.image.load("texturen/Splashscreen_v1.jpg").convert()  # Splashscreen
-        logoimage = screen.blit(image, (0, 0))
-        pygame.display.flip()
-        pygame.time.delay(3500)
+        self.display()
+
+    def display(self):
+
+        instSplash = SplashScreen()
+        instSplash.initSplashScreen()
 
         """ PYGAME INIT """
         pygame.init()
@@ -37,6 +38,10 @@ class main():
         referenz = ObjectValues()
         zaehler = 0
         while True:
+            for event in pygame.event.get():
+                if event.type == QUIT:
+                    pygame.quit()
+                    quit()
             zaehler += 1
             glClearColor(0., 0., 0., 1.)
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
@@ -44,6 +49,8 @@ class main():
 
             pygame.display.flip()
             pygame.time.wait(10)
+        return
+
 
         """
             1. SplashScreen ->Pygame
