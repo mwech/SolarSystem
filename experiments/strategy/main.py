@@ -1,5 +1,4 @@
 from experiments.strategy.ConcreteObject import ConcreteObject
-from experiments.strategy.ObjectValues import ObjectValues
 from experiments.strategy.SplashScreen import SplashScreen
 from experiments.strategy.Event import Event
 from OpenGL.GLUT import *
@@ -39,7 +38,6 @@ class main():
                  0, 0, 0,
                  0, 1, 0]
         concrete.perform_util(liste)
-        referenz = ObjectValues()
         zaehler = 0
         while True:
             instEvent = Event()

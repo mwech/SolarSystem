@@ -47,8 +47,8 @@ class AObject(object):
         """
         self._design_verhalten.drawSphere(0,0,0,1,1,"Sonne",1,number)
 
-        self._design_verhalten.drawSphere(-5,0,-2,2,1,"Planet",2,number)
+        self._design_verhalten.drawSphere(-5,0,-2,2,0.5,"Planet",2,number)
         self._design_verhalten.drawSphere(-2,0,-2,3,0.2,"Mond",3,number)
 
-        self._design_verhalten.drawSphere(4,0,-2,2,1,"Planet",2,number)
+        self._design_verhalten.drawSphere(4,0,-2,2,0.5,"Planet",2,number)
         self._design_verhalten.drawSphere(1,0,-1,3, 0.2,"Mond",3,number)

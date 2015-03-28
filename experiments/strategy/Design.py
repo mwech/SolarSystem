@@ -61,3 +61,5 @@ class Design(DesignVerhalten):
         if art == "Mond":
             glRotate(referenz.speedMond*number, 0, 1, 0)
             glTranslate(1, 0, 1)
+            #print(referenz.manometer)
+            #print(int(referenz.texturesSun[1]))
