@@ -9,8 +9,14 @@ from OpenGL.GL import *
 
 
 class Event():
+    __speedMond = 1.5
+    __speedPlanet = 0.5
+
+
     def controllEvents(self):
-        for event in pygame.event.get():
+        zaehler = 0
+        while True:
+            for event in pygame.event.get():
                 if event.type == QUIT:
                     pygame.quit()
                     quit()
@@ -53,19 +59,22 @@ class Event():
                     #------------------------------------------------------------------------#
 
                     if event.key == pygame.K_LEFT:
-                        referenz = ObjectValues()
-                        referenz.speedPlanet-=0.3
-                        referenz.speedMond-=0.2
+                        Event.__speedPlanet-=0.25
+                        Event.__speedMond-=0.5
                     #Rotation schneller --> Pfeiltaste rechts
                     if event.key == pygame.K_RIGHT:
-                        referenz = ObjectValues()
-                        referenz.speedPlanet+=0.3
-                        referenz.speedMond+=0.2
+                        Event.__speedPlanet+=0.25
+                        Event.__speedMond+=0.5
                     #Rotationsstop --> Pfeiltaste unten
                     if event.key == pygame.K_DOWN:
-                        referenz = ObjectValues()
-                        #a = int(referenz.manometer[1])
-                        del referenz.manometer[:]
-                        referenz.manometer.extend("2")
-                        referenz.speedPlanet=0
-                        referenz.speedMond=0
+                        Event.__speedPlanet=0
+                        Event.__speedMond=0
+            zaehler += 1
+            glClearColor(0., 0., 0., 1.)
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+            concrete = ConcreteObject()
+            concrete.perform_design(zaehler, Event.__speedPlanet, Event.__speedMond)
+
+            pygame.display.flip()
+            pygame.time.wait(10)
+        return

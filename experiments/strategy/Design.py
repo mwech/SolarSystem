@@ -11,7 +11,7 @@ class Design(DesignVerhalten):
     :param DesignVerhalten: reference of the DesignVerhalten class
     """
 
-    def drawSphere(self, x, y, z, mat, size, art, textur, number):
+    def drawSphere(self, x, y, z, mat, size, art, textur, number, speed):
         referenz = ObjectValues()
 
         if(mat == 1):
@@ -25,7 +25,7 @@ class Design(DesignVerhalten):
             glMaterialfv(GL_FRONT, GL_DIFFUSE, color)
 
         glPushMatrix()
-        self.rotate(art, number, referenz)
+        self.rotate(art, number, speed)
         position = (x,y,z)
         try:
             glTranslatef(*position)
@@ -51,15 +51,17 @@ class Design(DesignVerhalten):
 
 
 
-    def rotate(self, art, number, referenz):
+    def rotate(self, art, number, speed):
+        referenz = ObjectValues()
         if art == "Sonne":
             glRotate(referenz.speedSonne*number, 0, 1, 0)
             glTranslate(1, 0, 1)
         if art == "Planet":
-            glRotate(referenz.speedPlanet*number, 0, 1, 0)
+            glRotate(speed*number, 0, 1, 0)
             glTranslate(1, 0, 1)
         if art == "Mond":
-            glRotate(referenz.speedMond*number, 0, 1, 0)
+            glRotate(speed*number, 0, 1, 0)
             glTranslate(1, 0, 1)
-            #print(referenz.manometer)
-            #print(int(referenz.texturesSun[1]))
+            #print(referenz.speed)
+
+

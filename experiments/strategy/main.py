@@ -38,20 +38,8 @@ class main():
                  0, 0, 0,
                  0, 1, 0]
         concrete.perform_util(liste)
-        zaehler = 0
-        while True:
-            instEvent = Event()
-            instEvent.controllEvents()
-            zaehler += 1
-            glClearColor(0., 0., 0., 1.)
-            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
-            concrete.perform_design(zaehler)
-
-            pygame.display.flip()
-            pygame.time.wait(10)
-        return
-
-
+        instEvent = Event()
+        instEvent.controllEvents()
         """
             1. SplashScreen ->Pygame
             2. perspective(liste)
@@ -64,7 +52,7 @@ class main():
             9.      clear
             10.     drawSphere(self, x, y, z, mat, size, art, textur) --> sphereMaterial(), rotate()
             11.     pygame close
-            """
+        """
 
         """
             Util: SplashScreen(), depth(), perspective(liste), light(), LoadTexture(name)
