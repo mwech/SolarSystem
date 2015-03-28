@@ -11,10 +11,13 @@ from OpenGL.GL import *
 class Event():
     __speedMond = 1.5
     __speedPlanet = 0.5
+    __hilfe = 0
+    __zaehler = 0
+    __zahl = 0
 
 
     def controllEvents(self):
-        zaehler = 0
+        #zaehler = 0
         while True:
             for event in pygame.event.get():
                 if event.type == QUIT:
@@ -59,21 +62,30 @@ class Event():
                     #------------------------------------------------------------------------#
 
                     if event.key == pygame.K_LEFT:
-                        Event.__speedPlanet-=0.25
-                        Event.__speedMond-=0.5
+                        if Event.__hilfe == 1:
+                            Event.__hilfe = 0
+                            Event.__zahl = -2
+                        else:
+                            Event.__zaehler-=2
+                            Event.__zahl-=1
                     #Rotation schneller --> Pfeiltaste rechts
                     if event.key == pygame.K_RIGHT:
-                        Event.__speedPlanet+=0.25
-                        Event.__speedMond+=0.5
+                        if Event.__hilfe == 1:
+                            Event.__hilfe = 0
+                            Event.__zahl = 0
+                        else:
+                            Event.__zaehler+=2
+                            Event.__zahl +=1
+
                     #Rotationsstop --> Pfeiltaste unten
                     if event.key == pygame.K_DOWN:
-                        Event.__speedPlanet=0
-                        Event.__speedMond=0
-            zaehler += 1
+                        Event.__hilfe = 1
+            if Event.__hilfe!=1:
+                Event.__zaehler += 1 + Event.__zahl
             glClearColor(0., 0., 0., 1.)
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
             concrete = ConcreteObject()
-            concrete.perform_design(zaehler, Event.__speedPlanet, Event.__speedMond)
+            concrete.perform_design(Event.__zaehler, Event.__speedPlanet, Event.__speedMond)
 
             pygame.display.flip()
             pygame.time.wait(10)

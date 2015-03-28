@@ -54,7 +54,7 @@ class Design(DesignVerhalten):
     def rotate(self, art, number, speed):
         referenz = ObjectValues()
         if art == "Sonne":
-            glRotate(referenz.speedSonne*number, 0, 1, 0)
+            glRotate(0, 0, 1, 0)
             glTranslate(1, 0, 1)
         if art == "Planet":
             glRotate(speed*number, 0, 1, 0)
@@ -62,6 +62,7 @@ class Design(DesignVerhalten):
         if art == "Mond":
             glRotate(speed*number, 0, 1, 0)
             glTranslate(1, 0, 1)
+
             #print(referenz.speed)
 
 
