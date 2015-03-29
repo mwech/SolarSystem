@@ -1,0 +1,367 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>SolarSystem &mdash; SolarSystem 1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="SolarSystem 1 documentation" href="index.html" />
+    <link rel="prev" title="Welcome to SolarSystem’s documentation!" href="index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to SolarSystem’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">SolarSystem 1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="solarsystem">
+<h1>SolarSystem<a class="headerlink" href="#solarsystem" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="aobject">
+<h2>AObject<a class="headerlink" href="#aobject" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="src.AObject.AObject">
+<em class="property">class </em><code class="descclassname">src.AObject.</code><code class="descname">AObject</code><a class="headerlink" href="#src.AObject.AObject" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>AObject: Abstrakte Klasse, welche die abstrakten Methoden zum Setzen der Verhalten, sowie die Inhalte der</dt>
+<dd>Ausführung der perform Methoden enthält.</dd>
+</dl>
+<dl class="method">
+<dt id="src.AObject.AObject.perform_design">
+<code class="descname">perform_design</code><span class="sig-paren">(</span><em>number</em>, <em>speedPlanet</em>, <em>speedMond</em><span class="sig-paren">)</span><a class="headerlink" href="#src.AObject.AObject.perform_design" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aufrufen der Methode zum Erstellen der Sonne/Planeten/Monde
+:param number: Zaehler der bei jedem mal aufrufen erhöht wird
+:param speedPlanet: Die Geschwindigkeit der Planeten
+:param speedMond: Die Geschwindigkeiten der Monde
+:return: /</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.AObject.AObject.perform_util">
+<code class="descname">perform_util</code><span class="sig-paren">(</span><em>liste</em><span class="sig-paren">)</span><a class="headerlink" href="#src.AObject.AObject.perform_util" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mit dieser Methode, werden die Basic Funktionen zum Setzen von Licht, Texturierung,etc. aufgerufen
+:param liste: Werte, die für den gluLookAt Befehl zum Setzen der Perspektive notwendig sind
+:return: /</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.AObject.AObject.set_design_verhalten">
+<code class="descname">set_design_verhalten</code><span class="sig-paren">(</span><em>dv</em><span class="sig-paren">)</span><a class="headerlink" href="#src.AObject.AObject.set_design_verhalten" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the designverhalten
+:param dv:designverhalten
+:return: /</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.AObject.AObject.set_util_verhalten">
+<code class="descname">set_util_verhalten</code><span class="sig-paren">(</span><em>uv</em><span class="sig-paren">)</span><a class="headerlink" href="#src.AObject.AObject.set_util_verhalten" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the utilverhalten
+:param uv: utilverhalten
+:return: /</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="concreteobject">
+<h2>ConcreteObject<a class="headerlink" href="#concreteobject" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="src.ConcreteObject.ConcreteObject">
+<em class="property">class </em><code class="descclassname">src.ConcreteObject.</code><code class="descname">ConcreteObject</code><a class="headerlink" href="#src.ConcreteObject.ConcreteObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>ConcreteObject: Verwendung der abstrakten Klasse AObject</p>
+</dd></dl>
+
+</div>
+<div class="section" id="designverhalten">
+<h2>DesignVerhalten<a class="headerlink" href="#designverhalten" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="src.DesignVerhalten.DesignVerhalten">
+<em class="property">class </em><code class="descclassname">src.DesignVerhalten.</code><code class="descname">DesignVerhalten</code><a class="headerlink" href="#src.DesignVerhalten.DesignVerhalten" title="Permalink to this definition">¶</a></dt>
+<dd><p>DesignVerhalten: Abstrakte Klasse DesignVerhalten, welche definiert, wie die Methode zum Erstellen der Sonne,Planeten,Monde
+aufgebaut ist</p>
+<dl class="method">
+<dt id="src.DesignVerhalten.DesignVerhalten.drawSphere">
+<code class="descname">drawSphere</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>z</em>, <em>mat</em>, <em>size</em>, <em>art</em>, <em>textur</em>, <em>number</em>, <em>speed</em><span class="sig-paren">)</span><a class="headerlink" href="#src.DesignVerhalten.DesignVerhalten.drawSphere" title="Permalink to this definition">¶</a></dt>
+<dd><p>Erstellen und zuweisen einiger notwendiger Eigenschaften (Größe, Farbe,etc.) für die Sonne/Planeten/Monde
+:param x: Die x-Koordinate der Anfangsposition
+:param y: Die y-Koordinate der Anfangsposition
+:param z: Die y-Koordinate der Anfangsposition
+:param mat: Zahl, des zu verwendenden Materials
+:param size: Der Radius der Kugel
+:param art: Beschreibt, ob es sich um eine Sonne, Planet, oder Mond handelt
+:param textur: Beschreibt, welche Texture verwendet werden soll
+:param number: Zaehler der bei jedem mal aufrufen erhöht wird
+:param speed: die Geschwindigkeit, mit der rotiert werden soll
+:return: /</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="design">
+<h2>Design<a class="headerlink" href="#design" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="src.Design.Design">
+<em class="property">class </em><code class="descclassname">src.Design.</code><code class="descname">Design</code><a class="headerlink" href="#src.Design.Design" title="Permalink to this definition">¶</a></dt>
+<dd><p>Design: Verwenden der abstrakten Klasse; Erstellung/Initialsierung der Sonne/Planeten/Monde und Erstellung der
+Rotation dieser
+:param DesignVerhalten: reference of the DesignVerhalten class</p>
+<dl class="method">
+<dt id="src.Design.Design.drawSphere">
+<code class="descname">drawSphere</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>z</em>, <em>mat</em>, <em>size</em>, <em>art</em>, <em>textur</em>, <em>number</em>, <em>speed</em><span class="sig-paren">)</span><a class="headerlink" href="#src.Design.Design.drawSphere" title="Permalink to this definition">¶</a></dt>
+<dd><p>Erstellen und zuweisen einiger notwendiger Eigenschaften (Größe, Farbe,etc.) für die Sonne/Planeten/Monde
+:param x: Die x-Koordinate der Anfangsposition
+:param y: Die y-Koordinate der Anfangsposition
+:param z: Die y-Koordinate der Anfangsposition
+:param mat: Zahl, des zu verwendenden Materials
+:param size: Der Radius der Kugel
+:param art: Beschreibt, ob es sich um eine Sonne, Planet, oder Mond handelt
+:param textur: Beschreibt, welche Texture verwendet werden soll
+:param number: Zaehler der bei jedem mal aufrufen erhöht wird
+:param speed: die Geschwindigkeit, mit der rotiert werden soll
+:return: /</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Design.Design.rotate">
+<code class="descname">rotate</code><span class="sig-paren">(</span><em>art</em>, <em>number</em>, <em>speed</em><span class="sig-paren">)</span><a class="headerlink" href="#src.Design.Design.rotate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Methode, die Objekte rotiert
+:param art: Beschreibt, ob es sich um Sonne/Planeten/Monde handelt
+:param number: Zaehler der bei jedem mal aufrufen erhöht wird
+:param speed: die Geschwindigkeit, mit der rotiert werden soll
+:return: /</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="utilverhalten">
+<h2>UtilVerhalten<a class="headerlink" href="#utilverhalten" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="src.UtilVerhalten.UtilVerhalten">
+<em class="property">class </em><code class="descclassname">src.UtilVerhalten.</code><code class="descname">UtilVerhalten</code><a class="headerlink" href="#src.UtilVerhalten.UtilVerhalten" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>UtilVerhalten: Abstrakte Klasse UtilVerhalten, welche definiert, wie Basic Methoden (zB Erstellen von Licht,</dt>
+<dd>Texturen,etc.) aufgebaut sind</dd>
+</dl>
+<p>:param:nothing</p>
+<dl class="method">
+<dt id="src.UtilVerhalten.UtilVerhalten.depth">
+<code class="descname">depth</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.UtilVerhalten.UtilVerhalten.depth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setzen einiger notwendiger Eigenschaften
+:return: /</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.UtilVerhalten.UtilVerhalten.light">
+<code class="descname">light</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.UtilVerhalten.UtilVerhalten.light" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setzen des Lichtes
+:return: /</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.UtilVerhalten.UtilVerhalten.loadTexture">
+<code class="descname">loadTexture</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#src.UtilVerhalten.UtilVerhalten.loadTexture" title="Permalink to this definition">¶</a></dt>
+<dd><p>Erstellt Texturen und stellt diese bereit
+:param name: Der Name der Textur
+:return: /</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.UtilVerhalten.UtilVerhalten.perspective">
+<code class="descname">perspective</code><span class="sig-paren">(</span><em>liste</em><span class="sig-paren">)</span><a class="headerlink" href="#src.UtilVerhalten.UtilVerhalten.perspective" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setzen der Perspektive
+:param liste: Werte, die für den gluLookAt Befehl zum Setzen der Perspektive notwendig sind
+:return: /</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="util">
+<h2>Util<a class="headerlink" href="#util" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="src.Util.Util">
+<em class="property">class </em><code class="descclassname">src.Util.</code><code class="descname">Util</code><a class="headerlink" href="#src.Util.Util" title="Permalink to this definition">¶</a></dt>
+<dd><p>Util: Verwenden der abstrakten Klasse; Führt Basic Methoden (wie zB Erstellung von Licht, Texturen,etc.) durch
+:param UtilVerhalten: reference of theUtilVerhalten class</p>
+<dl class="method">
+<dt id="src.Util.Util.depth">
+<code class="descname">depth</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.Util.Util.depth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setzen einiger notwendiger Eigenschaften
+:return: /</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Util.Util.light">
+<code class="descname">light</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.Util.Util.light" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setzen des Lichtes
+:return: /</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Util.Util.loadTexture">
+<code class="descname">loadTexture</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#src.Util.Util.loadTexture" title="Permalink to this definition">¶</a></dt>
+<dd><p>Erstellt Texturen und stellt diese bereit
+:return: /</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Util.Util.perspective">
+<code class="descname">perspective</code><span class="sig-paren">(</span><em>liste</em><span class="sig-paren">)</span><a class="headerlink" href="#src.Util.Util.perspective" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setzen der Perspektive
+:param liste: Werte, die für den gluLookAt Befehl zum Setzen der Perspektive notwendig sind
+:return: /</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="event">
+<h2>Event<a class="headerlink" href="#event" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="src.Event.Event">
+<em class="property">class </em><code class="descclassname">src.Event.</code><code class="descname">Event</code><a class="headerlink" href="#src.Event.Event" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reagieren auf Events, wie Tastatur- und Maussteuerung
+Attributes:
+speedMond   Gewischwindigkeit des Monds
+speedPlanet Gewischwindkeit der Planeten
+hilfe       Hilfsvariable
+zaehler     Zaehler der bei jedem mal aufrufen erhöht wird
+zahl        Hilfsvariable</p>
+<dl class="method">
+<dt id="src.Event.Event.controllEvents">
+<code class="descname">controllEvents</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.Event.Event.controllEvents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reagiert auf Maus- und Tastatur Events
+:return:/</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="objectvalues">
+<h2>ObjectValues<a class="headerlink" href="#objectvalues" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="src.ObjectValues.ObjectValues">
+<em class="property">class </em><code class="descclassname">src.ObjectValues.</code><code class="descname">ObjectValues</code><a class="headerlink" href="#src.ObjectValues.ObjectValues" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="splashscreen">
+<h2>SplashScreen<a class="headerlink" href="#splashscreen" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="src.SplashScreen.SplashScreen">
+<em class="property">class </em><code class="descclassname">src.SplashScreen.</code><code class="descname">SplashScreen</code><a class="headerlink" href="#src.SplashScreen.SplashScreen" title="Permalink to this definition">¶</a></dt>
+<dd><p>SplashScreen: Laden des Spashscreens und Anzeigen im pygame window</p>
+<dl class="method">
+<dt id="src.SplashScreen.SplashScreen.initSplashScreen">
+<code class="descname">initSplashScreen</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.SplashScreen.SplashScreen.initSplashScreen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Konstruktor</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="main">
+<h2>main<a class="headerlink" href="#main" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">SolarSystem</a><ul>
+<li><a class="reference internal" href="#aobject">AObject</a></li>
+<li><a class="reference internal" href="#concreteobject">ConcreteObject</a></li>
+<li><a class="reference internal" href="#designverhalten">DesignVerhalten</a></li>
+<li><a class="reference internal" href="#design">Design</a></li>
+<li><a class="reference internal" href="#utilverhalten">UtilVerhalten</a></li>
+<li><a class="reference internal" href="#util">Util</a></li>
+<li><a class="reference internal" href="#event">Event</a></li>
+<li><a class="reference internal" href="#objectvalues">ObjectValues</a></li>
+<li><a class="reference internal" href="#splashscreen">SplashScreen</a></li>
+<li><a class="reference internal" href="#main">main</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to SolarSystem&#8217;s documentation!</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/SolarSystem.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to SolarSystem’s documentation!"
+             >previous</a> |</li>
+        <li><a href="index.html">SolarSystem 1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Arif Balkan, Maximilian Wech.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3b2.
+    </div>
+  </body>
+</html>
