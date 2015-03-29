@@ -3,8 +3,8 @@ import pygame
 from pygame.constants import DOUBLEBUF, OPENGL, QUIT
 from OpenGL.GLUT import *
 from OpenGL.GLU import *
-from experiments.strategy.ConcreteObject import ConcreteObject
-from experiments.strategy.ObjectValues import ObjectValues
+from ConcreteObject import ConcreteObject
+from ObjectValues import ObjectValues
 from OpenGL.GL import *
 
 

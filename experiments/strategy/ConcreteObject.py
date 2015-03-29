@@ -1,6 +1,6 @@
-from experiments.strategy.AObject import AObject
-from experiments.strategy.Design import Design
-from experiments.strategy.Util import Util
+from AObject import AObject
+from Design import Design
+from Util import Util
 
 __author__ = 'mwech'
 '''

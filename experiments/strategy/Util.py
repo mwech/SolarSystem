@@ -1,9 +1,10 @@
-from experiments.strategy.UtilVerhalten import UtilVerhalten
-from experiments.strategy.ObjectValues import ObjectValues
+from UtilVerhalten import UtilVerhalten
+from ObjectValues import ObjectValues
 from OpenGL.GLUT import *
 from OpenGL.GLU import *
 from OpenGL.GL import *
 from PIL import Image
+import imghdr
 
 __author__ = 'mwech'
 class Util(UtilVerhalten):
@@ -55,6 +56,14 @@ class Util(UtilVerhalten):
                   liste[3], liste[4], liste[5],
                   liste[6], liste[7], liste[8])
 
+    def validTexture(self, name):
+        try:
+            image_type = imghdr.what(name)
+            if image_type:
+                return True
+        except (FileNotFoundError, AttributeError, ValueError) as e:
+            return False
+
     def loadTexture(self, name):
         """
 
@@ -66,15 +75,18 @@ class Util(UtilVerhalten):
         image = image.convert("RGBA").tostring("raw", "RGBA")
         referenz = ObjectValues()
         # Create Texture
-        if name == "sun.jpg":
+        if name == "texturen/sun.jpg":
             referenz.texturesSun.extend(glGenTextures(3))
             glBindTexture(GL_TEXTURE_2D, int(referenz.texturesSun[1]))   # 2d texture (x and y size)
-        if name == "planet.png":
+        if name == "texturen/planet.png":
             referenz.texturesPlanet.extend(glGenTextures(3))
             glBindTexture(GL_TEXTURE_2D, int(referenz.texturesPlanet[1]))   # 2d texture (x and y size)
-        if name == "moon.jpg":
+        if name == "texturen/moon.jpg":
             referenz.texturesMoon.extend(glGenTextures(3))
             glBindTexture(GL_TEXTURE_2D, int(referenz.texturesMoon[1]))   # 2d texture (x and y size)
+        if name == "texturen/world2.png":
+            referenz.texturPlanet2.extend(glGenTextures(3))
+            glBindTexture(GL_TEXTURE_2D, int(referenz.texturPlanet2[1]))   # 2d texture (x and y size)
 
         glPixelStorei(GL_UNPACK_ALIGNMENT,1)
         glTexImage2D(GL_TEXTURE_2D, 0, 3, ix, iy, 0, GL_RGBA, GL_UNSIGNED_BYTE, image)

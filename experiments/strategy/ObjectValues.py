@@ -4,6 +4,7 @@ class ObjectValues:
     texturesSun = []
     texturesPlanet = []
     texturesMoon = []
+    texturPlanet2 = []
     manometer = []
 
 

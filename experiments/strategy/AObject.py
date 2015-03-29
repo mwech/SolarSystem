@@ -34,9 +34,10 @@ class AObject(object):
         self._util_verhalten.depth()
         self._util_verhalten.light()
         self._util_verhalten.perspective(liste)
-        self._util_verhalten.loadTexture("sun.jpg")
-        self._util_verhalten.loadTexture("planet.png")
-        self._util_verhalten.loadTexture("moon.jpg")
+        self._util_verhalten.loadTexture("texturen/sun.jpg")
+        self._util_verhalten.loadTexture("texturen/planet.png")
+        self._util_verhalten.loadTexture("texturen/moon.jpg")
+        self._util_verhalten.loadTexture("texturen/world2.png")
 
 
     @abc.abstractmethod
@@ -50,6 +51,5 @@ class AObject(object):
         self._design_verhalten.drawSphere(-6,0,-2,2,0.6,"Planet",2,number, speedPlanet)
         self._design_verhalten.drawSphere(-3,0,-2,3,0.3,"Mond",3,number, speedMond)
 
-
-        self._design_verhalten.drawSphere(5,0,-2,2,0.6,"Planet",2,number, speedPlanet)
+        self._design_verhalten.drawSphere(5,0,-2,4,0.6,"Planet",4,number, speedPlanet)
         self._design_verhalten.drawSphere(1,0,-1,3, 0.3,"Mond",3,number, speedMond)
