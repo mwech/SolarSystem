@@ -30,7 +30,10 @@ class Event():
 
 
     def controllEvents(self):
-        #zaehler = 0
+        """
+        Reagiert auf Maus- und Tastatur Events
+        :return:/
+        """
         while True:
             for event in pygame.event.get():
                 if event.type == QUIT:
@@ -73,9 +76,9 @@ class Event():
                         concrete = ConcreteObject()
                         concrete.perform_util(liste)
                     #------------------------------------------------------------------------#
-
+                    #Rotation langsamer
                     if event.key == pygame.K_LEFT:
-                        if Event.__hilfe == 1:
+                        if Event.__hilfe == 1: #Wenn gerade die Rotation gestoppt wurde
                             Event.__hilfe = 0
                             Event.__zahl = -2
                         else:
@@ -83,7 +86,7 @@ class Event():
                             Event.__zahl-=1
                     #Rotation schneller --> Pfeiltaste rechts
                     if event.key == pygame.K_RIGHT:
-                        if Event.__hilfe == 1:
+                        if Event.__hilfe == 1:  #Wenn gerade die Rotation gestoppt wurde
                             Event.__hilfe = 0
                             Event.__zahl = 0
                         else:
@@ -93,10 +96,13 @@ class Event():
                     #Rotationsstop --> Pfeiltaste unten
                     if event.key == pygame.K_DOWN:
                         Event.__hilfe = 1
-            if Event.__hilfe!=1:
+
+            if Event.__hilfe!=1: #Immer wenn die Rotation nicht gestoppt ist, soll der Zähler erhöht/veringert werden
                 Event.__zaehler += 1 + Event.__zahl
+            #Canvas reinigen
             glClearColor(0., 0., 0., 1.)
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+            #Aufruf zum Erstellen des Designs
             concrete = ConcreteObject()
             concrete.perform_design(Event.__zaehler, Event.__speedPlanet, Event.__speedMond)
 

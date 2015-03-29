@@ -41,7 +41,9 @@ class main():
         liste = [0, 0, 10,
                  0, 0, 0,
                  0, 1, 0]
+        #Aufruf der Basic Methoden (Licht,etc.)
         concrete.perform_util(liste)
+        #Auf Events prüfen
         instEvent = Event()
         instEvent.controllEvents()
 
