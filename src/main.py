@@ -8,7 +8,11 @@ import pygame
 from pygame.constants import DOUBLEBUF, OPENGL, QUIT
 
 __author__ = 'mwech'
-
+"""
+@author: Maximilian Wech
+@version: 2015 03 28
+@description: Main
+"""
 
 class main():
     """
@@ -17,13 +21,13 @@ class main():
 
     def __init__(self):
         """
-
-        :return: nothing
+        Konstruktor
         """
         self.display()
 
     def display(self):
 
+        #Starten des SpashScreens
         instSplash = SplashScreen()
         instSplash.initSplashScreen()
 

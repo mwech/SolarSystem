@@ -6,17 +6,24 @@ from OpenGL.GL import *
 from PIL import Image
 
 __author__ = 'mwech'
+
+"""
+@author: Maximilian Wech
+@version: 2015 03 28
+@description: Verwenden der abstrakten Klasse; Führt Basic Methoden (wie zB Erstellung von Licht, Texturen,etc.) durch
+"""
+
 class Util(UtilVerhalten):
     """
-    Util
+    Util: Verwenden der abstrakten Klasse; Führt Basic Methoden (wie zB Erstellung von Licht, Texturen,etc.) durch
     :param UtilVerhalten: reference of theUtilVerhalten class
     """
     def light(self):
         """
-
-        :return: nothing
+        Setzen des Lichtes
+        :return: /
         """
-        lightZeroPosition = [0., 0., -6., 1]
+        lightZeroPosition = [0., 0., -6., 1] #Position des Lichtes
         lightZeroColor = [0.8, 1.0, 0.8, 1.0]  # green tinged
         glLightfv(GL_LIGHT0, GL_POSITION, lightZeroPosition)
         glLightfv(GL_LIGHT0, GL_DIFFUSE, lightZeroColor)
@@ -32,8 +39,8 @@ class Util(UtilVerhalten):
 
     def depth(self):
         """
-
-        :return: nothing
+        Setzen einiger notwendiger Eigenschaften
+        :return: /
         """
         glShadeModel(GL_SMOOTH)
         glEnable(GL_CULL_FACE)
@@ -43,38 +50,44 @@ class Util(UtilVerhalten):
 
     def perspective(self, liste):
         """
-
-        :return: nothing
+        Setzen der Perspektive
+        :param liste: Werte, die für den gluLookAt Befehl zum Setzen der Perspektive notwendig sind
+        :return: /
         """
         glMatrixMode(GL_PROJECTION)
         glLoadIdentity()
         gluPerspective(120., 1., 1., 50.)
         glMatrixMode(GL_MODELVIEW)
         glLoadIdentity()
+        #Zuweisen der Perspektive anhand des Parameters
         gluLookAt(liste[0], liste[1], liste[2],
                   liste[3], liste[4], liste[5],
                   liste[6], liste[7], liste[8])
 
     def loadTexture(self, name):
         """
-
-        :return: nothing
+        Erstellt Texturen und stellt diese bereit
+        :return: /
         """
-        image = Image.open(name)
+        image = Image.open(name) #Öffnen der Textur
+        #Größe bestimmen
         ix = image.size[0]
         iy = image.size[1]
         image = image.convert("RGBA").tostring("raw", "RGBA")
         referenz = ObjectValues()
         # Create Texture
         if name == "sun.jpg":
+            #Auslagern der Textur in die Klasse ObjectValues
             referenz.texturesSun.extend(glGenTextures(3))
-            glBindTexture(GL_TEXTURE_2D, int(referenz.texturesSun[1]))   # 2d texture (x and y size)
+            glBindTexture(GL_TEXTURE_2D, int(referenz.texturesSun[1]))
         if name == "planet.png":
+            #Auslagern der Textur in die Klasse ObjectValues
             referenz.texturesPlanet.extend(glGenTextures(3))
-            glBindTexture(GL_TEXTURE_2D, int(referenz.texturesPlanet[1]))   # 2d texture (x and y size)
+            glBindTexture(GL_TEXTURE_2D, int(referenz.texturesPlanet[1]))
         if name == "moon.jpg":
+            #Auslagern der Textur in die Klasse ObjectValues
             referenz.texturesMoon.extend(glGenTextures(3))
-            glBindTexture(GL_TEXTURE_2D, int(referenz.texturesMoon[1]))   # 2d texture (x and y size)
+            glBindTexture(GL_TEXTURE_2D, int(referenz.texturesMoon[1]))
 
         glPixelStorei(GL_UNPACK_ALIGNMENT,1)
         glTexImage2D(GL_TEXTURE_2D, 0, 3, ix, iy, 0, GL_RGBA, GL_UNSIGNED_BYTE, image)

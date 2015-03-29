@@ -3,25 +3,25 @@ from src.Design import Design
 from src.Util import Util
 
 __author__ = 'mwech'
-'''
-IMPORTS
-'''
 
+"""
+@author: Maximilian Wech
+@version: 2015 03 27
+@description: Klasse, die Design- und Util Verhalten zuweist
+"""
 
 class ConcreteObject(AObject):
     """
-    ConcreteObject
-    :param Duck: Reference to the class AObject
+    ConcreteObject: Verwendung der abstrakten Klasse AObject
     """
     def __init__(self):
         """
-
-        :return: nothing
+        Konstruktor, in dem die Verhalten zugewiesen werden
         """
         AObject.__init__(self)
 
-        util_instanz = Util()
-        self._util_verhalten = util_instanz
+        util_instanz = Util() #Instanz-Erstellung
+        self._util_verhalten = util_instanz #Zuweisung des Verhaltens für das Util
 
-        design_instanz = Design()
-        self._design_verhalten = design_instanz
+        design_instanz = Design() #Instanz-Erstellung
+        self._design_verhalten = design_instanz #Zuweisung des Verhaltens für das Design

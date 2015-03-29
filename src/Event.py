@@ -6,8 +6,22 @@ from OpenGL.GLU import *
 from src.ConcreteObject import ConcreteObject
 from OpenGL.GL import *
 
+"""
+@author: Maximilian Wech
+@version: 2015 03 28
+@description: Reagieren auf Events, wie Tastatur- und Maussteuerung
+"""
 
 class Event():
+    """
+    Reagieren auf Events, wie Tastatur- und Maussteuerung
+    Attributes:
+    speedMond   Gewischwindigkeit des Monds
+    speedPlanet Gewischwindkeit der Planeten
+    hilfe       Hilfsvariable
+    zaehler     Zaehler der bei jedem mal aufrufen erhöht wird
+    zahl        Hilfsvariable
+    """
     __speedMond = 1.5
     __speedPlanet = 0.5
     __hilfe = 0
