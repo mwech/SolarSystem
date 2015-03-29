@@ -52,6 +52,7 @@ class AObject(object):
         self._util_verhalten.loadTexture("sun.jpg") #Methode für die Texturierung (der Sonne) aufrufen
         self._util_verhalten.loadTexture("planet.png") #Methode für die Texturierung (der Planeten) aufrufen
         self._util_verhalten.loadTexture("moon.jpg") #Methode für die Texturierung (der Monde) aufrufen
+        self._util_verhalten.loadTexture("world2.png") #Methode für die Texturierung (der Monde) aufrufen
 
 
     @abc.abstractmethod
@@ -68,5 +69,5 @@ class AObject(object):
         self._design_verhalten.drawSphere(-6,0,-2,2,0.6,"Planet",2,number, speedPlanet) #Zeichnen des Planets
         self._design_verhalten.drawSphere(-3,0,-2,3,0.3,"Mond",3,number, speedMond) #Zeichnen des dazugehörigen Monds
 
-        self._design_verhalten.drawSphere(5,0,-2,2,0.6,"Planet",2,number, speedPlanet) #Zeichnen des Planets
+        self._design_verhalten.drawSphere(5,0,-2,2,0.6,"Planet",4,number, speedPlanet) #Zeichnen des Planets
         self._design_verhalten.drawSphere(1,0,-1,3, 0.3,"Mond",3,number, speedMond) #Zeichnen des dazugehörigen Monds

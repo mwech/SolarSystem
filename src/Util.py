@@ -4,11 +4,12 @@ from OpenGL.GLUT import *
 from OpenGL.GLU import *
 from OpenGL.GL import *
 from PIL import Image
+import imghdr
 
 __author__ = 'mwech'
 
 """
-@author: Maximilian Wech
+@author: Maximilian Wech, Arif Balkan
 @version: 2015 03 28
 @description: Verwenden der abstrakten Klasse; Führt Basic Methoden (wie zB Erstellung von Licht, Texturen,etc.) durch
 """
@@ -35,6 +36,18 @@ class Util(UtilVerhalten):
         glEnable(GL_TEXTURE_GEN_T)
         glEnable(GL_LIGHTING)
         glEnable(GL_LIGHT0)
+
+    def validTexture(self, name):
+        """
+        Überprüfen des Fileformats der Textur
+        :return: /
+        """
+        try:
+            image_type = imghdr.what(name)
+            if image_type:
+                return True
+        except (FileNotFoundError, AttributeError, ValueError) as e:
+            return False
 
 
     def depth(self):
@@ -88,6 +101,10 @@ class Util(UtilVerhalten):
             #Auslagern der Textur in die Klasse ObjectValues
             referenz.texturesMoon.extend(glGenTextures(3))
             glBindTexture(GL_TEXTURE_2D, int(referenz.texturesMoon[1]))
+        if name == "world2.png":
+            #Auslagern der Textur in die Klasse ObjectValues
+            referenz.texturesWorld.extend(glGenTextures(3))
+            glBindTexture(GL_TEXTURE_2D, int(referenz.texturesWorld[1]))
 
         glPixelStorei(GL_UNPACK_ALIGNMENT,1)
         glTexImage2D(GL_TEXTURE_2D, 0, 3, ix, iy, 0, GL_RGBA, GL_UNSIGNED_BYTE, image)
