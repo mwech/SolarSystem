@@ -69,7 +69,7 @@ class Util(UtilVerhalten):
         """
         glMatrixMode(GL_PROJECTION)
         glLoadIdentity()
-        gluPerspective(120., 1., 1., 50.)
+        gluPerspective(80, 1080 / 720, 0.01, 120)
         glMatrixMode(GL_MODELVIEW)
         glLoadIdentity()
         #Zuweisen der Perspektive anhand des Parameters

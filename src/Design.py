@@ -33,7 +33,7 @@ class Design(DesignVerhalten):
         :return: /
         """
         if isinstance(x, int) and isinstance(y, int) and isinstance(z, int) and isinstance(mat, int) and isinstance(size, float) or isinstance(size, int) \
-                and isinstance(art, str) and isinstance(textur, int) and isinstance(number, int) and isinstance(speed, int):
+                and isinstance(art, str) and isinstance(textur, int) and isinstance(number, int) and isinstance(speed, int) and size > 0:
             referenz = ObjectValues()
 
             if(mat == 1): #Wenn mat 1, dann Farbe gelb zuweisen -> Sonne
