@@ -41,6 +41,17 @@ class MyTestCase(unittest.TestCase):
         speed = 0
         self.assertRaises(TypeError, x, y, z, mat, art, textur, number, speed)
 
+    def test_drawSphere4_false_input(self):
+        x = True
+        y = True
+        z = True
+        mat = False
+        art = False
+        textur = True
+        number = False
+        speed = True
+        self.assertRaises(TypeError, x, y, z, mat, art, textur, number, speed)
+
     def test_rotate_false_input(self):
         art = 2
         number = 3
@@ -63,6 +74,18 @@ class MyTestCase(unittest.TestCase):
         art = -5
         number = -10
         speed = -50
+        self.assertRaises(TypeError, art, number, speed)
+
+    def test_rotate5_false_input(self):
+        art = True
+        number = True
+        speed = False
+        self.assertRaises(TypeError, art, number, speed)
+
+    def test_rotate6_false_input(self):
+        art = -5
+        number = -10
+        speed = False
         self.assertRaises(TypeError, art, number, speed)
 
 

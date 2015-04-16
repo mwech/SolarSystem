@@ -4,9 +4,10 @@ from OpenGL.GLUT import *
 from OpenGL.GLU import *
 from OpenGL.GL import *
 from PIL import Image
+from math import pi
 import imghdr
 
-__author__ = 'mwech'
+__author__ = 'mwech, balkan'
 class Util(UtilVerhalten):
     """
     Util
@@ -49,7 +50,7 @@ class Util(UtilVerhalten):
         """
         glMatrixMode(GL_PROJECTION)
         glLoadIdentity()
-        gluPerspective(120., 1., 1., 50.)
+        gluPerspective(80, 1080 / 720, 0.01, 120)
         glMatrixMode(GL_MODELVIEW)
         glLoadIdentity()
         gluLookAt(liste[0], liste[1], liste[2],
@@ -88,7 +89,7 @@ class Util(UtilVerhalten):
             referenz.texturPlanet2.extend(glGenTextures(3))
             glBindTexture(GL_TEXTURE_2D, int(referenz.texturPlanet2[1]))   # 2d texture (x and y size)
 
-        glPixelStorei(GL_UNPACK_ALIGNMENT,1)
+        #glPixelStorei(GL_UNPACK_ALIGNMENT,1)
         glTexImage2D(GL_TEXTURE_2D, 0, 3, ix, iy, 0, GL_RGBA, GL_UNSIGNED_BYTE, image)
         glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP)
         glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP)
