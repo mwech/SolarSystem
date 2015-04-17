@@ -1,0 +1,743 @@
+commit c70e87a928bf1b139560ef80487c1d6c5c55e013
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Sun Mar 29 16:41:08 2015 +0200
+
+    Final version
+
+ src/AObject.py                   |   3 +-
+ src/Design.py                    |  98 +++++++++++++++++++++------------------
+ src/ObjectValues.py              |   1 +
+ src/Util.py                      |  19 +++++++-
+ src/texturen/Splashscreen_v1.jpg | Bin 0 -> 406109 bytes
+ src/texturen/__init__.py         |   1 +
+ src/texturen/moon.jpg            | Bin 0 -> 97303 bytes
+ src/texturen/planet.png          | Bin 0 -> 1330047 bytes
+ src/texturen/sun.jpg             | Bin 0 -> 269307 bytes
+ src/texturen/world2.png          | Bin 0 -> 9572643 bytes
+ src/world2.png                   | Bin 0 -> 9572643 bytes
+ tests/Testcase_Design.py         |  78 +++++++++++++++++++++++++++++++
+ tests/Testcase_Util.py           |  62 +++++++++++++++++++++++++
+ 13 files changed, 216 insertions(+), 46 deletions(-)
+
+commit 13cfd92812533512499ef9b02070a8f4891c1089
+Author: abalkan <abalkan@student.tgm.ac.at>
+Date:   Sun Mar 29 15:53:42 2015 +0200
+
+    Added testcases, and small changes Splashscreen
+
+ __init__.py                                        |   1 +
+ experiments/strategy/AObject.py                    |  10 +-
+ experiments/strategy/ConcreteObject.py             |   6 +-
+ experiments/strategy/Design.py                     | 106 ++++++++++++---------
+ experiments/strategy/Event.py                      |   4 +-
+ experiments/strategy/ObjectValues.py               |   1 +
+ experiments/strategy/SplashScreen.py               |   2 +-
+ experiments/strategy/Testcase_Design.py            |  72 ++++++++++++++
+ experiments/strategy/Testcase_Util.py              |  56 +++++++++++
+ experiments/strategy/Util.py                       |  24 +++--
+ experiments/strategy/__init__.py                   |   1 +
+ .../strategy/__pycache__/AObject.cpython-34.pyc    | Bin 0 -> 1980 bytes
+ .../__pycache__/ConcreteObject.cpython-34.pyc      | Bin 0 -> 861 bytes
+ .../strategy/__pycache__/Design.cpython-34.pyc     | Bin 0 -> 2527 bytes
+ .../__pycache__/DesignVerhalten.cpython-34.pyc     | Bin 0 -> 732 bytes
+ .../strategy/__pycache__/Event.cpython-34.pyc      | Bin 0 -> 2121 bytes
+ .../__pycache__/ObjectValues.cpython-34.pyc        | Bin 0 -> 491 bytes
+ .../__pycache__/SplashScreen.cpython-34.pyc        | Bin 0 -> 874 bytes
+ .../__pycache__/Testcase_Design.cpython-34.pyc     | Bin 0 -> 2573 bytes
+ .../__pycache__/Testcase_Util.cpython-34.pyc       | Bin 0 -> 2522 bytes
+ .../strategy/__pycache__/Util.cpython-34.pyc       | Bin 0 -> 3614 bytes
+ .../__pycache__/UtilVerhalten.cpython-34.pyc       | Bin 0 -> 1198 bytes
+ experiments/strategy/main.py                       |   6 +-
+ experiments/strategy/moon.jpg                      | Bin 97303 -> 0 bytes
+ experiments/strategy/planet.png                    | Bin 1330047 -> 0 bytes
+ experiments/strategy/sun.jpg                       | Bin 269307 -> 0 bytes
+ experiments/strategy/texturen/Splashscreen_v1.jpg  | Bin 728877 -> 429231 bytes
+ experiments/strategy/texturen/moon.jpg             | Bin 0 -> 97303 bytes
+ experiments/strategy/texturen/planet.png           | Bin 0 -> 1330047 bytes
+ experiments/strategy/texturen/sun.jpg              | Bin 0 -> 269307 bytes
+ experiments/strategy/texturen/world2.png           | Bin 0 -> 9572643 bytes
+ experiments/testing/__init__.py                    |   1 +
+ src/texturen/Splashscreen_v1.jpg                   | Bin 406109 -> 0 bytes
+ 33 files changed, 224 insertions(+), 66 deletions(-)
+
+commit 09b23f9f3a1eb65956a2fd4c71923ddae6f8b3f5
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Sun Mar 29 14:42:07 2015 +0200
+
+    Added Sphinx documentation
+
+ .idea/SolarSystem.iml             |     4 +
+ doc/.buildinfo                    |     4 +
+ doc/.doctrees/SolarSystem.doctree |   Bin 0 -> 45446 bytes
+ doc/.doctrees/environment.pickle  |   Bin 0 -> 9880 bytes
+ doc/.doctrees/index.doctree       |   Bin 0 -> 4905 bytes
+ doc/Makefile                      |   183 +
+ doc/SolarSystem.html              |   367 ++
+ doc/SolarSystem.rst               |    52 +
+ doc/_sources/SolarSystem.txt      |    52 +
+ doc/_sources/index.txt            |    24 +
+ doc/_static/ajax-loader.gif       |   Bin 0 -> 673 bytes
+ doc/_static/basic.css             |   599 +++
+ doc/_static/comment-bright.png    |   Bin 0 -> 3500 bytes
+ doc/_static/comment-close.png     |   Bin 0 -> 3578 bytes
+ doc/_static/comment.png           |   Bin 0 -> 3445 bytes
+ doc/_static/default.css           |   261 +
+ doc/_static/doctools.js           |   263 +
+ doc/_static/down-pressed.png      |   Bin 0 -> 347 bytes
+ doc/_static/down.png              |   Bin 0 -> 347 bytes
+ doc/_static/file.png              |   Bin 0 -> 358 bytes
+ doc/_static/jquery-1.11.1.js      | 10308 ++++++++++++++++++++++++++++++++++++
+ doc/_static/jquery.js             |     4 +
+ doc/_static/minus.png             |   Bin 0 -> 173 bytes
+ doc/_static/plus.png              |   Bin 0 -> 173 bytes
+ doc/_static/pygments.css          |    63 +
+ doc/_static/searchtools.js        |   622 +++
+ doc/_static/sidebar.js            |   159 +
+ doc/_static/underscore-1.3.1.js   |   999 ++++
+ doc/_static/underscore.js         |    31 +
+ doc/_static/up-pressed.png        |   Bin 0 -> 345 bytes
+ doc/_static/up.png                |   Bin 0 -> 345 bytes
+ doc/_static/websupport.js         |   808 +++
+ doc/conf.py                       |   280 +
+ doc/genindex.html                 |   295 ++
+ doc/index.html                    |   134 +
+ doc/index.rst                     |    24 +
+ doc/make.bat                      |   263 +
+ doc/objects.inv                   |     6 +
+ doc/search.html                   |    99 +
+ doc/searchindex.js                |     1 +
+ 40 files changed, 15905 insertions(+)
+
+commit 88bf15a972ec80f77623052f0bad3ff688b16927
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Sun Mar 29 13:55:47 2015 +0200
+
+    Improved documentation
+
+ src/Event.py | 16 +++++++++++-----
+ src/main.py  |  2 ++
+ 2 files changed, 13 insertions(+), 5 deletions(-)
+
+commit 3d5fe0f2434d6b01deae3d569431238ba8681c0e
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Sun Mar 29 13:18:00 2015 +0200
+
+    Added documentation
+
+ src/AObject.py         | 49 ++++++++++++++++++++++++------------
+ src/ConcreteObject.py  | 22 ++++++++--------
+ src/Design.py          | 68 +++++++++++++++++++++++++++++++++-----------------
+ src/DesignVerhalten.py | 26 +++++++++++++++----
+ src/Event.py           | 14 +++++++++++
+ src/ObjectValues.py    |  6 ++++-
+ src/SplashScreen.py    | 14 ++++++++++-
+ src/Util.py            | 41 +++++++++++++++++++-----------
+ src/UtilVerhalten.py   | 28 ++++++++++++++-------
+ src/main.py            | 10 +++++---
+ 10 files changed, 195 insertions(+), 83 deletions(-)
+
+commit 615be993fa7e5a60d5c419d14fe73f420ee61517
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Sun Mar 29 11:53:09 2015 +0200
+
+    Adjusted SplashScreen Size
+
+ src/SplashScreen.py              |   2 +-
+ src/texturen/Splashscreen_v1.jpg | Bin 728877 -> 406109 bytes
+ 2 files changed, 1 insertion(+), 1 deletion(-)
+
+commit 6a255825e5563671aca17a3deab7aa321f426e78
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Sun Mar 29 11:40:57 2015 +0200
+
+    Created tests folder
+
+ README.md         | 1 -
+ __init__.py       | 1 -
+ tests/__init__.py | 1 +
+ 3 files changed, 1 insertion(+), 2 deletions(-)
+
+commit fa19af87f8dfb82a936e3fd7e36a34da7bb3d9db
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Sun Mar 29 11:32:10 2015 +0200
+
+    Moved final files into the the src folder
+
+ Object.py                        | 110 ------------
+ __init__.py                      |   2 +-
+ experiments/Ball.py              |  45 -----
+ experiments/House.png            | Bin 87902 -> 0 bytes
+ experiments/SimpleSphereTest.py  | 118 -------------
+ experiments/Teapot.py            | 177 -------------------
+ experiments/demoShadows.py       | 355 ---------------------------------------
+ experiments/xy.py                | 116 -------------
+ src/AObject.py                   |  55 ++++++
+ src/ConcreteObject.py            |  27 +++
+ src/Design.py                    |  68 ++++++++
+ src/DesignVerhalten.py           |  18 ++
+ src/Event.py                     |  91 ++++++++++
+ src/GUI/__init__.py              |   1 -
+ src/GUIModel.py                  |  47 ------
+ src/Grabber.py                   | 240 --------------------------
+ src/House.png                    | Bin 87902 -> 0 bytes
+ src/ObjectValues.py              |   8 +
+ src/Sphere.py                    | 271 ------------------------------
+ src/Sphere_test.py               |  31 ----
+ src/SplashScreen.py              |  12 ++
+ src/Splashscreen_v2.jpg          | Bin 576567 -> 0 bytes
+ src/Src/__init__.py              |   1 -
+ src/Util.py                      |  88 ++++++++++
+ src/UtilVerhalten.py             |  42 +++++
+ src/freeglut.dll                 | Bin 229376 -> 0 bytes
+ src/game.py                      |  65 -------
+ src/gui.py                       |  77 ---------
+ src/main.py                      |  44 +++++
+ src/planet.png                   | Bin 0 -> 1330047 bytes
+ src/space_gui.ui                 |  62 -------
+ src/texturen/Splashscreen_v2.jpg | Bin 576567 -> 0 bytes
+ src/texturen/planet.png          | Bin 1330047 -> 0 bytes
+ src/texturen/world2.png          | Bin 9572643 -> 0 bytes
+ 34 files changed, 454 insertions(+), 1717 deletions(-)
+
+commit aa1bdc504336f5b75463e1f23b81a351f55e3c6f
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Sat Mar 28 20:57:37 2015 +0100
+
+    All Event problems regarding rotation control fixed
+
+ experiments/strategy/Design.py |  3 ++-
+ experiments/strategy/Event.py  | 30 +++++++++++++++++++++---------
+ 2 files changed, 23 insertions(+), 10 deletions(-)
+
+commit 62f7ea6f3485a57aa618defaf90d2ff94973a962
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Sat Mar 28 18:02:56 2015 +0100
+
+    Adjusted size of objects
+
+ experiments/strategy/AObject.py | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
+
+commit 6ae8f540814d430717c7277255d01688d4839ea5
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Sat Mar 28 17:49:37 2015 +0100
+
+    Modifying speed of spheres now possible
+
+ experiments/strategy/AObject.py         | 12 +++++------
+ experiments/strategy/Design.py          | 16 ++++++++-------
+ experiments/strategy/DesignVerhalten.py |  2 +-
+ experiments/strategy/Event.py           | 35 +++++++++++++++++++++------------
+ experiments/strategy/ObjectValues.py    |  3 ---
+ experiments/strategy/main.py            | 18 +++--------------
+ 6 files changed, 41 insertions(+), 45 deletions(-)
+
+commit 16cd516bbfabe6f9f821340c10ff9f1f08e27fea
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Sat Mar 28 16:19:34 2015 +0100
+
+    Beta Version
+
+ experiments/strategy/AObject.py      |  4 ++--
+ experiments/strategy/Design.py       |  2 ++
+ experiments/strategy/Event.py        | 30 ++++++++++++++++++++++++++++--
+ experiments/strategy/ObjectValues.py |  5 +++--
+ experiments/strategy/main.py         |  2 --
+ 5 files changed, 35 insertions(+), 8 deletions(-)
+
+commit 9024dd15f5594a809b6e9fd103343ad9e1949666
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Sat Mar 28 14:55:31 2015 +0100
+
+    Minor bugfix
+
+ experiments/strategy/AObject.py | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+commit 25dd351646a9027ad55499083203dce98b923b3d
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Sat Mar 28 14:51:53 2015 +0100
+
+    Event: change perspective now possible
+
+ experiments/strategy/AObject.py |  8 +-------
+ experiments/strategy/Event.py   | 25 ++++++++++++++++++++++++-
+ experiments/strategy/main.py    |  5 ++++-
+ 3 files changed, 29 insertions(+), 9 deletions(-)
+
+commit b5ace8c904eee165ab7ab31ed4a6d828fd572d34
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Sat Mar 28 14:33:33 2015 +0100
+
+    Minor light bug fix
+
+ experiments/strategy/AObject.py |  4 +++-
+ experiments/strategy/Design.py  |  5 ++++-
+ experiments/strategy/Event.py   | 22 ++++++++++++++++++++++
+ experiments/strategy/Util.py    | 14 ++++++++++----
+ experiments/strategy/main.py    |  7 +++----
+ 5 files changed, 42 insertions(+), 10 deletions(-)
+
+commit 7fceaef80dcf8afd08b740fd563d225f86acec23
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Sat Mar 28 11:42:50 2015 +0100
+
+    Creating spheres now more dynamic
+
+ experiments/strategy/AObject.py         |  11 +--
+ experiments/strategy/Design.py          | 119 ++++++++------------------------
+ experiments/strategy/DesignVerhalten.py |  17 +----
+ 3 files changed, 36 insertions(+), 111 deletions(-)
+
+commit 9034bd92ace164b4f2cac6ad1e84d2f9daa7aebc
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Sat Mar 28 11:15:14 2015 +0100
+
+    Closing the pygame scene now possible; Shifted SplashScreen code into other class
+
+ experiments/strategy/SplashScreen.py | 12 ++++++++++++
+ experiments/strategy/main.py         | 21 ++++++++++++++-------
+ 2 files changed, 26 insertions(+), 7 deletions(-)
+
+commit 369f76ce78a61b912f18da6d0ca82c99327275d6
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Fri Mar 27 23:54:52 2015 +0100
+
+    Integrated rotation into the pattern
+
+ experiments/strategy/AObject.py      | 12 ++++----
+ experiments/strategy/Design.py       | 15 +++++-----
+ experiments/strategy/ObjectValues.py |  1 -
+ experiments/strategy/main.py         | 57 +++++++++++++++++++-----------------
+ 4 files changed, 44 insertions(+), 41 deletions(-)
+
+commit 209daede69ce8f83a4d04acbc6ba9e233cca5baf
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Fri Mar 27 22:52:13 2015 +0100
+
+    Strategy pattern without rotation and events implemented
+
+ experiments/strategy/main.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 109de1089ced673ba1656a03315a8dbd00bf901d
+Merge: f6424a0 812c4af
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Fri Mar 27 22:49:17 2015 +0100
+
+    Merge branch 'development' of https://github.com/mwech/SolarSystem into development
+
+commit f6424a09086be519604c7d859db8cace00eec221
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Fri Mar 27 22:46:47 2015 +0100
+
+    Strategy pattern without rotation and events implemented
+
+ experiments/strategy/AObject.py                   |  16 +++-
+ experiments/strategy/Design.py                    |  99 +++++++++++++++++++++-
+ experiments/strategy/ObjectValues.py              |  12 +++
+ experiments/strategy/Util.py                      |  55 +++++++++++-
+ experiments/strategy/main.py                      |  31 ++++++-
+ experiments/strategy/moon.jpg                     | Bin 0 -> 97303 bytes
+ experiments/strategy/planet.png                   | Bin 0 -> 1330047 bytes
+ experiments/strategy/sun.jpg                      | Bin 0 -> 269307 bytes
+ experiments/strategy/texturen/Splashscreen_v1.jpg | Bin 0 -> 728877 bytes
+ 9 files changed, 199 insertions(+), 14 deletions(-)
+
+commit 812c4afee667dc6795bdb7d9fa8e081edc5a6486
+Author: abalkan <abalkan@student.tgm.ac.at>
+Date:   Fri Mar 27 14:29:39 2015 +0100
+
+    Added Earth texture, moon rotates around the earth plus camera movements
+
+ src/Sphere.py           |  89 +++++++++++++++++++++++++++++++++---------------
+ src/planet.png          | Bin 1330047 -> 0 bytes
+ src/texturen/planet.png | Bin 0 -> 1330047 bytes
+ 3 files changed, 62 insertions(+), 27 deletions(-)
+
+commit a78f115a82d60bd0114a064ff10fb2a8baa3fedc
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Thu Mar 26 23:07:54 2015 +0100
+
+    Adjusted basic structure of the pattern
+
+ experiments/strategy/AObject.py           | 18 ++++++++-----
+ experiments/strategy/ConcreteObject.py    |  7 +++---
+ experiments/strategy/Design.py            | 18 +++++++++++--
+ experiments/strategy/DesignVerhalten.py   | 18 ++++++++++++-
+ experiments/strategy/Rotation.py          | 14 -----------
+ experiments/strategy/RotationVerhalten.py | 18 -------------
+ experiments/strategy/Util.py              | 35 ++++++++++++++++++++++++++
+ experiments/strategy/UtilVerhalten.py     | 42 +++++++++++++++++++++++++++++++
+ experiments/strategy/main.py              | 22 +++++++++++++++-
+ 9 files changed, 147 insertions(+), 45 deletions(-)
+
+commit dd7f60569e8b554e62520a1b960689a3756e7e14
+Author: abalkan <abalkan@student.tgm.ac.at>
+Date:   Wed Mar 25 12:03:34 2015 +0100
+
+    Added splashscreen in pygame
+
+ __pycache__/__init__.cpython-34.pyc        | Bin 0 -> 169 bytes
+ src/GUI/__pycache__/gui.cpython-34.pyc     | Bin 3305 -> 0 bytes
+ src/GUI/game.py                            |  64 ------------------------
+ src/GUI/gui.py                             |  77 -----------------------------
+ src/GUIModel.py                            |   1 +
+ src/Sphere.py                              |  18 ++++++-
+ src/Src/__init__.py                        |   1 +
+ src/__pycache__/GUIModel.cpython-34.pyc    | Bin 1101 -> 0 bytes
+ src/__pycache__/Grabber.cpython-34.pyc     | Bin 7931 -> 0 bytes
+ src/__pycache__/Sphere.cpython-34.pyc      | Bin 4356 -> 4887 bytes
+ src/__pycache__/Sphere_test.cpython-34.pyc | Bin 871 -> 0 bytes
+ src/__pycache__/__init__.cpython-34.pyc    | Bin 174 -> 0 bytes
+ src/__pycache__/gui.cpython-34.pyc         | Bin 0 -> 3301 bytes
+ src/game.py                                |  65 ++++++++++++++++++++++++
+ src/gui.py                                 |  77 +++++++++++++++++++++++++++++
+ 15 files changed, 161 insertions(+), 142 deletions(-)
+
+commit 946f9ec4f17b5fee400b94717688ea73c58e5b1b
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Wed Mar 25 11:17:03 2015 +0100
+
+    minior update
+
+ src/Sphere.py | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 3107d8867bc969304da081423c95b86c14f59c98
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Wed Mar 25 11:10:08 2015 +0100
+
+    Added rotation around planet
+
+ src/Sphere.py | 16 +++++++++++-----
+ 1 file changed, 11 insertions(+), 5 deletions(-)
+
+commit 668a60c9bd3de800e07824002eb59a1ef101e281
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Wed Mar 25 09:08:49 2015 +0100
+
+    Made the texture method dynamic
+
+ src/Sphere.py | 81 +++++++++++++++--------------------------------------------
+ 1 file changed, 20 insertions(+), 61 deletions(-)
+
+commit c7df30293cb709455e81c2f99ddd4dc732bd7865
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Wed Mar 25 08:49:21 2015 +0100
+
+    Integrated textures in our scene
+
+ src/Sphere.py  | 120 +++++++++++++++++++++++++++++++++++++++++++++++++--------
+ src/moon.jpg   | Bin 0 -> 97303 bytes
+ src/planet.png | Bin 0 -> 1330047 bytes
+ src/sun.jpg    | Bin 0 -> 269307 bytes
+ 4 files changed, 104 insertions(+), 16 deletions(-)
+
+commit b76ae6277e8549b041d9cc03d2d09736f72158cd
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Tue Mar 24 22:02:54 2015 +0100
+
+    Changed the way objects are rotated
+
+ experiments/NeHe.bmp    | Bin 196662 -> 0 bytes
+ experiments/NeHe2.bmp   | Bin 196662 -> 0 bytes
+ experiments/Thumbs.db   | Bin 18432 -> 0 bytes
+ experiments/floor.msh   | Bin 203600 -> 0 bytes
+ experiments/lesson26.py | 271 ------------------------------------------------
+ experiments/mirrow2.bmp | Bin 786486 -> 0 bytes
+ experiments/obj.msh     | Bin 27728 -> 0 bytes
+ src/House.png           | Bin 0 -> 87902 bytes
+ src/Sphere.py           |  64 +++++++-----
+ 9 files changed, 36 insertions(+), 299 deletions(-)
+
+commit 36e26ad42926f0c687ec86cc32f1774a6543d4aa
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Tue Mar 24 21:17:59 2015 +0100
+
+    Texture example
+
+ experiments/House.png           | Bin 8457 -> 87902 bytes
+ experiments/SimpleSphereTest.py | 118 ++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 118 insertions(+)
+
+commit d8007fcb85cc3e73b57f93ee98be0e954eb77eee
+Author: abalkan <abalkan@student.tgm.ac.at>
+Date:   Tue Mar 24 18:28:33 2015 +0100
+
+    Implemented first GUI with pygame
+
+ __init__.py                            |   1 +
+ src/GUI/__init__.py                    |   1 +
+ src/GUI/__pycache__/gui.cpython-34.pyc | Bin 0 -> 3305 bytes
+ src/GUI/game.py                        |  64 +++++++++++++
+ src/GUI/gui.py                         |  77 ++++++++++++++++
+ src/GUIModel.py                        |   3 +
+ src/Sphere_test.py                     | 163 +++------------------------------
+ src/world2.png                         | Bin 9572643 -> 0 bytes
+ 8 files changed, 161 insertions(+), 148 deletions(-)
+
+commit f62d0f5a52c63aeec4a5d409363fd1cf841e2c16
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Thu Mar 19 22:41:07 2015 +0100
+
+    Implemented a basic structure of the strategy design pattern
+
+ experiments/strategy/AObject.py           | 41 +++++++++++++++++++++++++++++++
+ experiments/strategy/ConcreteObject.py    | 26 ++++++++++++++++++++
+ experiments/strategy/Design.py            | 15 +++++++++++
+ experiments/strategy/DesignVerhalten.py   | 17 +++++++++++++
+ experiments/strategy/Rotation.py          | 14 +++++++++++
+ experiments/strategy/RotationVerhalten.py | 18 ++++++++++++++
+ experiments/strategy/main.py              | 19 ++++++++++++++
+ 7 files changed, 150 insertions(+)
+
+commit 658275a69f01502fdba29ae3214bff0d37d60646
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Sun Mar 15 17:39:22 2015 +0100
+
+    Added change of perspective via keyboard input
+
+ src/Sphere.py | 35 ++++++++++++++++++++++++++---------
+ 1 file changed, 26 insertions(+), 9 deletions(-)
+
+commit 9f947c7234512c67a100b46304b756fabaf56579
+Author: abalkan <abalkan@student.tgm.ac.at>
+Date:   Sun Mar 15 11:29:44 2015 +0100
+
+    splashscreen small changes regarding structure
+
+ src/GUIModel.py                  |   3 ++-
+ src/Splashscreen_v1.jpg          | Bin 728877 -> 0 bytes
+ src/texturen/Splashscreen_v1.jpg | Bin 0 -> 728877 bytes
+ src/texturen/Splashscreen_v2.jpg | Bin 0 -> 576567 bytes
+ src/texturen/world2.png          | Bin 0 -> 9572643 bytes
+ 5 files changed, 2 insertions(+), 1 deletion(-)
+
+commit bd3cdd46037133a54c07931e5fc7063f84726be9
+Author: abalkan <abalkan@student.tgm.ac.at>
+Date:   Sun Mar 15 11:23:56 2015 +0100
+
+    Splashscreen implementation
+
+ src/GUIModel.py                            |  36 ++++++++++++++++++-----------
+ src/Sphere.py                              |   5 ----
+ src/Splashscreen_v1.jpg                    | Bin 0 -> 728877 bytes
+ src/Splashscreen_v2.jpg                    | Bin 0 -> 576567 bytes
+ src/__pycache__/GUIModel.cpython-34.pyc    | Bin 0 -> 1101 bytes
+ src/__pycache__/Sphere.cpython-34.pyc      | Bin 4356 -> 4356 bytes
+ src/__pycache__/Sphere_test.cpython-34.pyc | Bin 5122 -> 871 bytes
+ src/__pycache__/__init__.cpython-34.pyc    | Bin 0 -> 174 bytes
+ 8 files changed, 23 insertions(+), 18 deletions(-)
+
+commit 04c601e1ae04a667a4dcf1cb4e4f3f43daf2d008
+Author: abalkan <abalkan@student.tgm.ac.at>
+Date:   Mon Mar 9 13:12:32 2015 +0100
+
+    Import application into gui
+
+ src/GUIModel.py                            |  32 ++++
+ src/Grabber.py                             | 240 +++++++++++++++++++++++++++++
+ src/Model_GUI.py                           |  13 --
+ src/Sphere_test.py                         | 164 ++++++++++++++++++++
+ src/__pycache__/Grabber.cpython-34.pyc     | Bin 0 -> 7931 bytes
+ src/__pycache__/Sphere.cpython-34.pyc      | Bin 0 -> 4356 bytes
+ src/__pycache__/Sphere_test.cpython-34.pyc | Bin 0 -> 5122 bytes
+ src/test.py                                |  18 ---
+ 8 files changed, 436 insertions(+), 31 deletions(-)
+
+commit 38f8b002bd507ae61dcdd4bcf3a22ebfa45d67f4
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Sun Mar 8 22:13:55 2015 +0100
+
+    Added more spheres, changed some things in the sphereMaterial and rotate methods
+
+ src/Sphere.py | 60 +++++++++++++++++++++++++++++++++++++++++------------------
+ 1 file changed, 42 insertions(+), 18 deletions(-)
+
+commit f5e8d37d1af76d2ff390a2225769db3cc254fde4
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Sun Mar 8 15:39:30 2015 +0100
+
+    Controlling animation with keyboard buttons now possible
+
+ experiments/demoShadows.py | 355 +++++++++++++++++++++++++++++++++++++++++++++
+ experiments/floor.msh      | Bin 0 -> 203600 bytes
+ experiments/obj.msh        | Bin 0 -> 27728 bytes
+ src/Sphere.py              |  40 ++---
+ 4 files changed, 370 insertions(+), 25 deletions(-)
+
+commit 5be47968ea6df90ff5d3fb5f0bd815111c2d1c5c
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Sun Mar 8 14:14:53 2015 +0100
+
+    1. Light not rotating anymore
+    2. Implemented mouseclick listeners for disabling and enabling light
+
+ src/Sphere.py | 21 ++++++++++++++++++---
+ 1 file changed, 18 insertions(+), 3 deletions(-)
+
+commit f7fb633e7c025fcfabc6add0e5534af1bea34a52
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Sat Mar 7 12:15:07 2015 +0100
+
+    More spheres now possible
+
+ src/Sphere.py | 12 +++++++-----
+ 1 file changed, 7 insertions(+), 5 deletions(-)
+
+commit b24bd7ba60e6d0cb112dfc2668e9dcc866334926
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Sat Mar 7 11:10:58 2015 +0100
+
+    Sphere now in OOP form
+
+ src/Sphere.py | 192 +++++++++++++++++++++++++---------------------------------
+ 1 file changed, 82 insertions(+), 110 deletions(-)
+
+commit bb548c3c1914c9c6f13d42d2ae170135a43b005f
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Sat Mar 7 10:18:29 2015 +0100
+
+    First introduction of pygame
+
+ src/Sphere.py | 98 +++++++++++++++++++++++++++++++++++++++++------------------
+ 1 file changed, 69 insertions(+), 29 deletions(-)
+
+commit b0f0641dcd216c8b93ab34812e2ff7834afaf94d
+Author: abalkan <abalkan@student.tgm.ac.at>
+Date:   Mon Mar 2 12:58:35 2015 +0100
+
+    Sphere small code changes
+
+ Object.py             | 110 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ experiments/Thumbs.db | Bin 0 -> 18432 bytes
+ src/Model_GUI.py      |  13 ++++++
+ src/Sphere.py         |   2 -
+ src/freeglut.dll      | Bin 0 -> 229376 bytes
+ src/world2.png        | Bin 0 -> 9572643 bytes
+ 6 files changed, 123 insertions(+), 2 deletions(-)
+
+commit e0fd7e59b57373cbc9951b3bb991d8d8b555d6a0
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Sun Mar 1 20:28:06 2015 +0100
+
+    Project structure more clear now
+
+ Ball.py                 |  45 --------
+ House.png               | Bin 8457 -> 0 bytes
+ NeHe.bmp                | Bin 196662 -> 0 bytes
+ NeHe2.bmp               | Bin 196662 -> 0 bytes
+ Sphere.py               | 106 -------------------
+ Teapot.py               | 177 -------------------------------
+ experiments/Ball.py     |  45 ++++++++
+ experiments/House.png   | Bin 0 -> 8457 bytes
+ experiments/NeHe.bmp    | Bin 0 -> 196662 bytes
+ experiments/NeHe2.bmp   | Bin 0 -> 196662 bytes
+ experiments/Teapot.py   | 177 +++++++++++++++++++++++++++++++
+ experiments/__init__.py |   1 +
+ experiments/lesson26.py | 271 ++++++++++++++++++++++++++++++++++++++++++++++++
+ experiments/mirrow2.bmp | Bin 0 -> 786486 bytes
+ experiments/xy.py       | 116 +++++++++++++++++++++
+ lesson26.py             | 271 ------------------------------------------------
+ mirrow2.bmp             | Bin 786486 -> 0 bytes
+ space_gui.ui            |  62 -----------
+ src/Sphere.py           | 106 +++++++++++++++++++
+ src/__init__.py         |   1 +
+ src/space_gui.ui        |  62 +++++++++++
+ src/test.py             |  18 ++++
+ test.py                 |  18 ----
+ xy.py                   | 116 ---------------------
+ 24 files changed, 797 insertions(+), 795 deletions(-)
+
+commit 93ac6ca62a7395a8daf24af7f02716db15e94f49
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Sun Mar 1 20:20:38 2015 +0100
+
+    2nd sphere
+
+ Sphere.py | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
+
+commit 125585b95f0fc0c12742ebf4c1ce9ea9dbb0587d
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Sun Mar 1 19:35:36 2015 +0100
+
+    Rotation around a point now possible
+
+ .idea/inspectionProfiles/Project_Default.xml   |  14 ++
+ .idea/inspectionProfiles/profiles_settings.xml |   7 +
+ House.png                                      | Bin 0 -> 8457 bytes
+ NeHe.bmp                                       | Bin 0 -> 196662 bytes
+ NeHe2.bmp                                      | Bin 0 -> 196662 bytes
+ Sphere.py                                      |  10 +-
+ lesson26.py                                    | 271 +++++++++++++++++++++++++
+ mirrow2.bmp                                    | Bin 0 -> 786486 bytes
+ 8 files changed, 299 insertions(+), 3 deletions(-)
+
+commit ebdb84fb783e34169f9909c003101fea854cd78b
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Fri Feb 27 21:54:24 2015 +0100
+
+    Sphere Rotation now possible
+
+ Sphere.py |  46 +++++++++++-------
+ xy.py     | 160 +++++++++++++++++++++++++++++++-------------------------------
+ 2 files changed, 109 insertions(+), 97 deletions(-)
+
+commit 9f41445ce78866519e104fcd52c87ac68c15e5f7
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Fri Feb 27 21:22:19 2015 +0100
+
+    Segmented the sphere class
+
+ Sphere.py | 60 ++++++++++++++++++++++++++++++++++++++++++++++--------------
+ xy.py     |  2 +-
+ 2 files changed, 47 insertions(+), 15 deletions(-)
+
+commit 200175e49e3c97d46458614569faa3d0378161d9
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Fri Feb 27 19:08:48 2015 +0100
+
+    Added some rotation examples
+
+ Sphere.py |  28 +++++-----
+ Teapot.py | 177 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ xy.py     | 114 ++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 307 insertions(+), 12 deletions(-)
+
+commit 1d9deb10a8ae251958eacf2dfe77f37d16b4cac5
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Fri Feb 27 18:40:15 2015 +0100
+
+    First sphere example
+
+ .idea/.name                     |  1 +
+ .idea/SolarSystem.iml           |  8 +++++++
+ .idea/encodings.xml             |  4 ++++
+ .idea/misc.xml                  |  4 ++++
+ .idea/modules.xml               |  8 +++++++
+ .idea/scopes/scope_settings.xml |  5 +++++
+ .idea/vcs.xml                   |  6 ++++++
+ Ball.py                         | 45 ++++++++++++++++++++++++++++++++++++++++
+ Sphere.py                       | 46 +++++++++++++++++++++++++++++++++++++++++
+ 9 files changed, 127 insertions(+)
+
+commit e33a014d27ef34913e779f83000644b94ea6d9ee
+Author: abalkan <abalkan@student.tgm.ac.at>
+Date:   Fri Feb 27 00:07:05 2015 +0100
+
+    PyQt5 GUI import with python
+
+ space_gui.ui | 62 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ test.py      | 18 ++++++++++++++++++
+ 2 files changed, 80 insertions(+)
+
+commit 2d7bdd663ed273ce7fd65f14ab3f274c84f559c5
+Author: mwech <mwech@student.tgm.ac.at>
+Date:   Tue Feb 17 09:17:58 2015 +0100
+
+    Initial commit
+
+ README.md | 1 +
+ 1 file changed, 1 insertion(+)
