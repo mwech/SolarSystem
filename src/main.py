@@ -1,6 +1,6 @@
-from src.ConcreteObject import ConcreteObject
-from src.SplashScreen import SplashScreen
-from src.Event import Event
+from ConcreteObject import ConcreteObject
+from SplashScreen import SplashScreen
+from Event import Event
 from OpenGL.GLUT import *
 from OpenGL.GLU import *
 from OpenGL.GL import *
@@ -33,7 +33,7 @@ class main():
 
         """ PYGAME INIT """
         pygame.init()
-        display = (800, 600)
+        display = (1080, 720)
         screen = pygame.display.get_surface()
         pygame.display.set_mode(display, DOUBLEBUF | OPENGL)
 

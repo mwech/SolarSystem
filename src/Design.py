@@ -1,5 +1,5 @@
-from src.DesignVerhalten import DesignVerhalten
-from src.ObjectValues import ObjectValues
+from DesignVerhalten import DesignVerhalten
+from ObjectValues import ObjectValues
 from OpenGL.GLUT import *
 from OpenGL.GLU import *
 from OpenGL.GL import *
@@ -70,6 +70,9 @@ class Design(DesignVerhalten):
                                 if textur == 4: #Wenn textur 4, dann 2. Planettextur zuweisen
                                     gluQuadricTexture(quadratic, GL_TRUE)
                                     glBindTexture(GL_TEXTURE_2D, int(referenz.texturesWorld[1]))
+                                if textur == 5: #Wenn textur 4, dann 2. Planettextur zuweisen
+                                    gluQuadricTexture(quadratic, GL_TRUE)
+                                    glBindTexture(GL_TEXTURE_2D, int(referenz.texturesMars[1]))
 
                                 gluSphere(quadratic, size, 20, 20) #Zeichnen der Kugel
                             finally:

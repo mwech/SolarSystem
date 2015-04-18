@@ -1,6 +1,6 @@
-from src.AObject import AObject
-from src.Design import Design
-from src.Util import Util
+from AObject import AObject
+from Design import Design
+from Util import Util
 
 __author__ = 'mwech'
 

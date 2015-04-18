@@ -9,5 +9,6 @@ class ObjectValues:
     texturesPlanet = []
     texturesMoon = []
     texturesWorld = []
+    texturesMars = []
 
 

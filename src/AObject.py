@@ -53,7 +53,7 @@ class AObject(object):
         self._util_verhalten.loadTexture("planet.png") #Methode für die Texturierung (der Planeten) aufrufen
         self._util_verhalten.loadTexture("moon.jpg") #Methode für die Texturierung (der Monde) aufrufen
         self._util_verhalten.loadTexture("world2.png") #Methode für die Texturierung (der Monde) aufrufen
-
+        self._util_verhalten.loadTexture("mars.jpg") #Methode für die Texturierung (der Monde) aufrufen
 
     @abc.abstractmethod
     def perform_design(self, number, speedPlanet, speedMond):
@@ -64,10 +64,13 @@ class AObject(object):
         :param speedMond: Die Geschwindigkeiten der Monde
         :return: /
         """
-        self._design_verhalten.drawSphere(0,0,0,1,2,"Sonne",1,number,0) #Zeichnen der Sonne
+        self._design_verhalten.drawSphere(0,0,0,1,1,"Sonne",1,number,0) #Zeichnen der Sonne
 
-        self._design_verhalten.drawSphere(-6,0,-2,2,0.6,"Planet",2,number, speedPlanet) #Zeichnen des Planets
-        self._design_verhalten.drawSphere(-3,0,-2,3,0.3,"Mond",3,number, speedMond) #Zeichnen des dazugehörigen Monds
+        self._design_verhalten.drawSphere(-6,0,-2,2,0.3,"Planet",2,number, speedPlanet*2) #Zeichnen des Planets
+        self._design_verhalten.drawSphere(-1,0,-2,3,0.0001,"Mond",3,number, speedMond/2) #Zeichnen des dazugehörigen Monds
 
-        self._design_verhalten.drawSphere(5,0,-2,2,0.6,"Planet",4,number, speedPlanet) #Zeichnen des Planets
-        self._design_verhalten.drawSphere(1,0,-1,3, 0.3,"Mond",3,number, speedMond) #Zeichnen des dazugehörigen Monds
+        self._design_verhalten.drawSphere(-9,0,-2,2,0.6,"Planet",4,number, speedPlanet/1.2) #Zeichnen des Planets
+        self._design_verhalten.drawSphere(0,0,-1,3, 0.2,"Mond",3,number, speedMond*4) #Zeichnen des dazugehörigen Monds
+
+        self._design_verhalten.drawSphere(-10,0,-2,2,0.3,"Planet",5,number, speedPlanet/3) #Zeichnen des Planets
+        self._design_verhalten.drawSphere(-1,0,-2,3,0.0001,"Mond",4,number, speedMond) #Zeichnen des dazugehörigen Monds
