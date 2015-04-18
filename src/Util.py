@@ -88,7 +88,7 @@ class Util(UtilVerhalten):
         Erstellt Texturen und stellt diese bereit
         :return: /
         """
-        if name == "sun.jpg" or name == "moon.jpg" or name == "planet.png" or name == "world2.png":
+        if name == "sun.jpg" or name == "moon.jpg" or name == "planet.png" or name == "world2.png" or name =="mars.jpg":
             image = Image.open(name) #Öffnen der Textur
             #Größe bestimmen
             ix = image.size[0]
@@ -112,6 +112,10 @@ class Util(UtilVerhalten):
                 #Auslagern der Textur in die Klasse ObjectValues
                 referenz.texturesWorld.extend(glGenTextures(3))
                 glBindTexture(GL_TEXTURE_2D, int(referenz.texturesWorld[1]))
+            if name == "mars.jpg":
+                #Auslagern der Textur in die Klasse ObjectValues
+                referenz.texturesMars.extend(glGenTextures(3))
+                glBindTexture(GL_TEXTURE_2D, int(referenz.texturesMars[1]))
 
             glPixelStorei(GL_UNPACK_ALIGNMENT,1)
             glTexImage2D(GL_TEXTURE_2D, 0, 3, ix, iy, 0, GL_RGBA, GL_UNSIGNED_BYTE, image)

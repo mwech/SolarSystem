@@ -1,5 +1,5 @@
-from DesignVerhalten import DesignVerhalten
-from ObjectValues import ObjectValues
+from src.DesignVerhalten import DesignVerhalten
+from src.ObjectValues import ObjectValues
 from OpenGL.GLUT import *
 from OpenGL.GLU import *
 from OpenGL.GL import *
@@ -38,7 +38,7 @@ class Design(DesignVerhalten):
             if size > 0 or size > 15:
                 referenz = ObjectValues()
                 if mat > 0 or mat < 4:
-                    if textur > 0 or textur  <= 4:
+                    if textur > 0 or textur  <= 5:
                         if art == "Sonne" or art == "Mond" or art == "Planet":
 
                             if(mat == 1): #Wenn mat 1, dann Farbe gelb zuweisen -> Sonne

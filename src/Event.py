@@ -3,7 +3,7 @@ import pygame
 from pygame.constants import DOUBLEBUF, OPENGL, QUIT
 from OpenGL.GLUT import *
 from OpenGL.GLU import *
-from ConcreteObject import ConcreteObject
+from src.ConcreteObject import ConcreteObject
 from OpenGL.GL import *
 
 """
