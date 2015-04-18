@@ -35,10 +35,6 @@ class Design_Testcases(unittest.TestCase):
         design.drawSphere(0,0,0,2,-2,"Sonne",0,2,0)
 
     @unittest.expectedFailure
-    def test_drawSphere_texture_greater_than_5(self):
-        design.drawSphere(0,0,0,2,1,"Sonne",6,2,0)
-
-    @unittest.expectedFailure
     def test_drawSphere_art_not_accepted(self):
         design.drawSphere(0,0,0,2,1,"Asteroide",4,2,0)
 
