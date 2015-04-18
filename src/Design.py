@@ -33,50 +33,63 @@ class Design(DesignVerhalten):
         :return: /
         """
         if isinstance(x, int) and isinstance(y, int) and isinstance(z, int) and isinstance(mat, int) and isinstance(size, float) or isinstance(size, int) \
-                and isinstance(art, str) and isinstance(textur, int) and isinstance(number, int) and isinstance(speed, int) and size > 0:
-            referenz = ObjectValues()
+                and isinstance(art, str) and isinstance(textur, int) and isinstance(number, int) and isinstance(speed, int):
 
-            if(mat == 1): #Wenn mat 1, dann Farbe gelb zuweisen -> Sonne
-                color = [1.0, 1., 0.0, 1.]
-                glMaterialfv(GL_FRONT, GL_DIFFUSE, color)
-            if(mat == 2): #Wenn mat 2, dann Farbe grün zuweisen -> Planeten
-                color = [0.0, 1., 0.0, 1.]
-                glMaterialfv(GL_FRONT, GL_DIFFUSE, color)
-            if(mat == 3): #Wenn mat 3, dann Farbe blau zuweisen -> Monde
-                color = [0.5, 0.5, 1, 1.]
-                glMaterialfv(GL_FRONT, GL_DIFFUSE, color)
+            if size > 0 or size > 15:
+                referenz = ObjectValues()
+                if mat > 0 or mat < 4:
+                    if textur > 0 or textur < 5:
+                        if art != "Sonne" or art != "Mond" or art != "Planet":
 
-            glPushMatrix() #Definieren der Push Matrix
-            self.rotate(art, number, speed) #Vor dem zeichnen muss die Rotation initialisiert werden
-            position = (x,y,z) #Koordinaten der Position
-            try:
-                glTranslatef(*position) #Zuweisen der Position
-                quadratic = gluNewQuadric()
+                            if(mat == 1): #Wenn mat 1, dann Farbe gelb zuweisen -> Sonne
+                                color = [1.0, 1., 0.0, 1.]
+                                glMaterialfv(GL_FRONT, GL_DIFFUSE, color)
+                            if(mat == 2): #Wenn mat 2, dann Farbe grün zuweisen -> Planeten
+                                color = [0.0, 1., 0.0, 1.]
+                                glMaterialfv(GL_FRONT, GL_DIFFUSE, color)
+                            if(mat == 3): #Wenn mat 3, dann Farbe blau zuweisen -> Monde
+                                color = [0.5, 0.5, 1, 1.]
+                                glMaterialfv(GL_FRONT, GL_DIFFUSE, color)
 
-                if textur == 1: #Wenn textur 1, dann Sonnentextur zuweisen
-                    gluQuadricTexture(quadratic, GL_TRUE)
-                    glBindTexture(GL_TEXTURE_2D, int(referenz.texturesSun[1]))
-                if textur == 2: #Wenn textur 2, dann Planetentextur zuweisen
-                    gluQuadricTexture(quadratic, GL_TRUE)
-                    glBindTexture(GL_TEXTURE_2D, int(referenz.texturesPlanet[1]))
-                if textur == 3: #Wenn textur 3, dann Mondtextur zuweisen
-                    gluQuadricTexture(quadratic, GL_TRUE)
-                    glBindTexture(GL_TEXTURE_2D, int(referenz.texturesMoon[1]))
-                if textur == 4: #Wenn textur 4, dann 2. Planettextur zuweisen
-                    gluQuadricTexture(quadratic, GL_TRUE)
-                    glBindTexture(GL_TEXTURE_2D, int(referenz.texturesWorld[1]))
+                            glPushMatrix() #Definieren der Push Matrix
+                            self.rotate(art, number, speed) #Vor dem zeichnen muss die Rotation initialisiert werden
+                            position = (x,y,z) #Koordinaten der Position
+                            try:
+                                glTranslatef(*position) #Zuweisen der Position
+                                quadratic = gluNewQuadric()
 
-                gluSphere(quadratic, size, 20, 20) #Zeichnen der Kugel
-            finally:
-                if(art=="Sonne"): #Pop Matrix für die Sonne
-                    glPopMatrix()
-                if(art=="Mond"):
-                    #Bei Monden muss zweimal PopMatrix verwendet werden, da bei Planeten keine zugewiesen wird
-                    #->Monde drehen sich um Planeten
-                    glPopMatrix()
-                    glPopMatrix()
+                                if textur == 1: #Wenn textur 1, dann Sonnentextur zuweisen
+                                    gluQuadricTexture(quadratic, GL_TRUE)
+                                    glBindTexture(GL_TEXTURE_2D, int(referenz.texturesSun[1]))
+                                if textur == 2: #Wenn textur 2, dann Planetentextur zuweisen
+                                    gluQuadricTexture(quadratic, GL_TRUE)
+                                    glBindTexture(GL_TEXTURE_2D, int(referenz.texturesPlanet[1]))
+                                if textur == 3: #Wenn textur 3, dann Mondtextur zuweisen
+                                    gluQuadricTexture(quadratic, GL_TRUE)
+                                    glBindTexture(GL_TEXTURE_2D, int(referenz.texturesMoon[1]))
+                                if textur == 4: #Wenn textur 4, dann 2. Planettextur zuweisen
+                                    gluQuadricTexture(quadratic, GL_TRUE)
+                                    glBindTexture(GL_TEXTURE_2D, int(referenz.texturesWorld[1]))
+
+                                gluSphere(quadratic, size, 20, 20) #Zeichnen der Kugel
+                            finally:
+                                if(art=="Sonne"): #Pop Matrix für die Sonne
+                                    glPopMatrix()
+                                if(art=="Mond"):
+                                    #Bei Monden muss zweimal PopMatrix verwendet werden, da bei Planeten keine zugewiesen wird
+                                    #->Monde drehen sich um Planeten
+                                    glPopMatrix()
+                                    glPopMatrix()
+                        else:
+                            raise Error("Nur die Arten Sonne,Mond oder Planet sind erlaubt")
+                    else:
+                        raise ValueError("Textur muss größer 0 und kleiner 5 sein")
+                else:
+                    raise ValueError("Material muss größer 0 und kleiner 4 sein")
+            else:
+                raise ValueError("Radius muss größer 0 und kleiner 15 sein")
         else:
-            raise TypeError('Only String,Integer and Float allowed')
+            raise TypeError('Nur String,Integer und Float erlaubt')
 
     def rotate(self, art, number, speed):
         """
