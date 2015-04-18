@@ -5,8 +5,11 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
-  <component name="ReSTService">
-    <option name="workdir" value="C:\Users\mwech\PycharmProjects\SolarSystem\doc" />
-    <option name="DOC_DIR" value="C:\Users\mwech\PycharmProjects\SolarSystem\doc" />
+  <component name="TemplatesService">
+    <option name="TEMPLATE_FOLDERS">
+      <list>
+        <option value="$MODULE_DIR$/doc/_templates" />
+      </list>
+    </option>
   </component>
 </module>
