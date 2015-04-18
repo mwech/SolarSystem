@@ -15,6 +15,7 @@ class UnitTestcases(unittest.TestCase):
         design = Design()
         ut = Util()
 
+    ################ Tests für Design ################
     @unittest.expectedFailure
     def test_drawSphere_radius_less_than_0(self):
         design.drawSphere(0,0,0,1,-2,"Sonne",1,2,0)
@@ -46,6 +47,18 @@ class UnitTestcases(unittest.TestCase):
     @unittest.expectedFailure
     def test_drawSphere_art_not_accepted3(self):
         design.drawSphere(0,0,0,2,1,"Stern",4,2,0)
+
+    @unittest.expectedFailure
+    def test_rotation_art_not_accepted(self):
+        design.rotation("Asteroide",4,2)
+
+    @unittest.expectedFailure
+    def test_rotation_art_not_accepted2(self):
+        design.rotation("Galaxie",4,2)
+
+    @unittest.expectedFailure
+    def test_rotation_art_not_accepted3(self):
+        design.rotation("Stern",4,2)
 
     def test_drawSphere_false_input(self):
         x = 5
@@ -127,7 +140,7 @@ class UnitTestcases(unittest.TestCase):
         speed = False
         self.assertRaises(TypeError, art, number, speed)
 
-    ################ Tests für Util #####################
+    ################ Tests für Util ################
     """
     def testValidFilename(self):
        actual = ut.validTexture("../src/texturen/moon.jpg")
@@ -168,6 +181,33 @@ class UnitTestcases(unittest.TestCase):
        actual = ut.validTexture(-5)
        expected = False
        self.assertEquals(actual, expected)
+
+    @unittest.expectedFailure
+    def testLoadTextures(self):
+        ut.LoadTextures("mond.jpg")
+
+    @unittest.expectedFailure
+    def testLoadTextures2(self):
+        ut.LoadTextures("mond.png")
+
+    @unittest.expectedFailure
+    def testPerspectiveEmptyList(self):
+        liste = []
+        ut.perspective(liste)
+
+    @unittest.expectedFailure
+    def testPerspectiveListNotEnoughElements(self):
+        liste = [0, 0, 10,
+                 0, 0, 0,
+                 0, 1]
+        ut.perspective(liste)
+
+    @unittest.expectedFailure
+    def testPerspectiveListTooMuchElements(self):
+        liste = [0, 0, 10,
+                 0, 0, 0,
+                 0, 1, 8, 9]
+        ut.perspective(liste)
 
     def tearDown(self):
         ut = None

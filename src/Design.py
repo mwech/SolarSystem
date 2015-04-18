@@ -39,7 +39,7 @@ class Design(DesignVerhalten):
                 referenz = ObjectValues()
                 if mat > 0 or mat < 4:
                     if textur > 0 or textur  <= 4:
-                        if art != "Sonne" or art != "Mond" or art != "Planet":
+                        if art == "Sonne" or art == "Mond" or art == "Planet":
 
                             if(mat == 1): #Wenn mat 1, dann Farbe gelb zuweisen -> Sonne
                                 color = [1.0, 1., 0.0, 1.]
@@ -99,15 +99,18 @@ class Design(DesignVerhalten):
         :param speed: die Geschwindigkeit, mit der rotiert werden soll
         :return: /
         """
-        if isinstance(art, str) and isinstance(number, int) and isinstance(number, float) or isinstance(number, int):
-            if art == "Sonne": #Sonne wird nicht gedreht
-                glRotate(0, 0, 1, 0)
-                glTranslate(1, 0, 1)
-            if art == "Planet":
-                glRotate(speed*number, 0, 1, 0) #Allgemeiner Speed von Planeten * Zaehler
-                glTranslate(1, 0, 1)
-            if art == "Mond":
-                glRotate(speed*number, 0, 1, 0) #Allgemeiner Speed von Monden * Zaehler
-                glTranslate(1, 0, 1)
+        if isinstance(art, str) and isinstance(number, int) or isinstance(number, float) or isinstance(number, int):
+            if art == "Sonne" or art == "Mond" or art == "Planet":
+                if art == "Sonne": #Sonne wird nicht gedreht
+                    glRotate(0, 0, 1, 0)
+                    glTranslate(1, 0, 1)
+                if art == "Planet":
+                    glRotate(speed*number, 0, 1, 0) #Allgemeiner Speed von Planeten * Zaehler
+                    glTranslate(1, 0, 1)
+                if art == "Mond":
+                    glRotate(speed*number, 0, 1, 0) #Allgemeiner Speed von Monden * Zaehler
+                    glTranslate(1, 0, 1)
+            else:
+                raise Error("Nur die Arten Sonne,Mond oder Planet sind erlaubt")
         else:
             raise TypeError('Only String,Integer and Float allowed')
